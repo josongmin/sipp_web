@@ -15,22 +15,24 @@ export default class FilterPanel extends React.Component {
             <div className="card-body">
               <h4 className="header-title">기간조회</h4>
               <div className="row">
-                <div className="col-xl-2">
+                <div className="col-md-4">
                   <Select options={[]} />
                 </div>
-                <div className="col-xl-8">
-                  <div className="row" style={{ marginLeft: -5, marginRight: -5 }}>
+                <div className="col-md-8">
+                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }}>1D</button>
+                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }}>3D</button>
+                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }}>1W</button>
+                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }}>1M</button>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xl-12">
+                  <div className="row">
                     <div className="col-3"><DateRangePicker /></div>
-                    <div className="col-3"><TimePicker /></div>
+                    <div className="col-3"><TimePicker /></div> -
                     <div className="col-3"><DateRangePicker /></div>
                     <div className="col-3"><TimePicker /></div>
                   </div>
-                </div>
-                <div className="col-xl-2">
-                  <button type="button" className="btn btn-info">1D</button>
-                  <button type="button" className="btn btn-info">3D</button>
-                  <button type="button" className="btn btn-info">1W</button>
-                  <button type="button" className="btn btn-info">1M</button>
                 </div>
               </div>
               <h4 className="header-title"></h4>

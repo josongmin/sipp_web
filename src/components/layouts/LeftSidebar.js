@@ -7,7 +7,7 @@ export default class LeftSidebar extends React.Component {
   render() {
     const { match } = this.props
     return (
-      <div className="left-side-menu">
+      <div className="left-side-menu left-side-menu-light">
         <div className="slimscroll-menu">
           <a href="index.html" className="logo text-center">
             <span className="logo-lg">
@@ -17,7 +17,7 @@ export default class LeftSidebar extends React.Component {
               SHOPEE
             </span>
           </a>
-          <ul className="metismenu side-nav">
+          <ul className="metismenu side-nav side-nav-light">
 
             <li className="side-nav-title side-nav-item">Navigation</li>
 
