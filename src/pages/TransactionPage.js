@@ -1,12 +1,19 @@
 import React from 'react'
-import { observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 import BasicLayout from '../components/layouts/BasicLayout'
 import Select from '../components/forms/Select'
 import FilterPanel from '../components/transaction/FilterPanel'
+import TransactionTable from '../components/transaction/TransactionTable'
 
+@inject('transactionStore')
 @observer
 export default class TransactionPage extends React.Component {
+  async componentDidMount() {
+    await this.props.transactionStore.getTrxs()
+  }
+
   render() {
+    const { filters, setFilters } = this.props.transactionStore
     return (
       <BasicLayout {...this.props}>
         <div className="row">
@@ -16,11 +23,14 @@ export default class TransactionPage extends React.Component {
                 <form className="form-inline">
                   <Select options={
                     [
-                      {label: '전체서비스', value: 'all'},
-                      {label: '33', value: '123'},
-                      {label: '55', value: '345'},
-                    ]
-                  } />
+                      {label: '전체서비스', value: ''},
+                      {label: 'Shopee EC', value: 'SHOPEE_EC'},
+                      {label: 'Shopee pay', value: 'SHOPEE_PAY'},
+                      {label: 'Shopee Kredit', value: 'SHOPEE_KREDIT'},
+                    ]}
+                          value={filters.dt_range_type}
+                          onChange={(value) => setFilters('service_type', value)}
+                  />
                 </form>
               </div>
               <h4 className="page-title">TRANSACTIONS</h4>
@@ -28,6 +38,15 @@ export default class TransactionPage extends React.Component {
           </div>
         </div>
         <FilterPanel />
+        <div className="row filterPanel">
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body">
+                <TransactionTable />
+              </div>
+            </div>
+          </div>
+        </div>
       </BasicLayout>
     )
   }

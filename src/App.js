@@ -7,10 +7,16 @@ import TransactionPage from './pages/TransactionPage'
 import LoginPage from './pages/LoginPage'
 import createBrowserHistory from 'history/createBrowserHistory'
 import { stores } from './stores'
+import { create } from "mobx-persist"
 
 const history = createBrowserHistory()
 
 class App extends Component {
+  async componentWillMount() {
+    const hydrate = create()
+
+    await hydrate("User", stores.userStore)
+  }
   render() {
     return (
       <Provider {...stores}>

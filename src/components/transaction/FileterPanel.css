@@ -1,0 +1,21 @@
+.filterPanel .row-dash {
+    position: absolute;
+    right: -4px;
+    top: 7px;
+}
+
+.filterPanel .buttons {
+
+}
+
+@media screen and (min-width: 1200px) {
+    .filterPanel .buttons {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .filterPanel .row-dash {
+        display: none;
+    }
+}

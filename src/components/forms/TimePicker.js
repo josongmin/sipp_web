@@ -10,16 +10,21 @@ export default class TimePicker extends React.Component {
         "up": "mdi mdi-chevron-up",
         "down": "mdi mdi-chevron-down"
       }
+    }).on('changeTime.timepicker', (e) => {
+      this.props.onChange(e.time)
     })
+
+    this.props.setRef(this.$el)
   }
 
   render() {
-    const { label } = this.props
+    const { label, value } = this.props
     return (
       <div className="form-group mb-3">
         {label && <label>{label}</label>}
         <div className="input-group">
-          <input ref={el => this.el = el} type="text" className="form-control" data-toggle='timepicker' />
+          <input ref={el => this.el = el} type="text" className="form-control" data-toggle='timepicker' value={value}
+                 onChange={() => {}} />
             <div className="input-group-append">
               <span className="input-group-text"><i className="dripicons-clock" /></span>
             </div>

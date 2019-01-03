@@ -1,7 +1,8 @@
 import axios from "axios"
 import qs from "qs"
+import { stores } from '../stores'
 
-export const URL = "http://54.169.44.55:2112"
+export const URL = "http://54.169.44.55:10006/v1/admin"
 export const LINK_URL = "http://54.169.44.55"
 
 // export const URL = "http://localhost:2112";
@@ -51,6 +52,10 @@ export function axiosQueryApi(
       Accept: "*/*",
       "Content-Type": "application/json"
     }
+  }
+
+  if(stores.userStore.accessToken) {
+    defaultConfing.headers['sipp-token'] = stores.userStore.accessToken
   }
 
   const config = {

@@ -7316,9 +7316,9 @@ body {
 .logo {
   display: block;
   line-height: 80px; }
-  .logo span.logo-lg {
+  .logo .logo-lg {
     display: block; }
-  .logo span.logo-sm {
+  .logo .logo-sm {
     display: none; }
 
 .wrapper {
@@ -7469,7 +7469,7 @@ body {
       left: 190px;
       top: 0; }
 
-.enlarged .logo span.logo-lg {
+.enlarged .logo .logo-lg {
   display: none; }
 
 .enlarged .logo span.logo-sm {
@@ -7497,9 +7497,9 @@ body.enlarged {
     padding: 5px 10px; }
   .enlarged .left-side-menu {
     margin-left: -70px; }
-  .logo span.logo-lg {
+  .logo .logo-lg {
     display: block; }
-  .logo span.logo-sm {
+  .logo .logo-sm {
     display: none; } }
 
 .left-side-menu-light {

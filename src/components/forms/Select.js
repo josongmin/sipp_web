@@ -4,14 +4,14 @@ import { observer } from 'mobx-react'
 @observer
 export default class Select extends React.Component {
   render() {
-    const { label, options, onChange } = this.props
+    const { label, options, value = '', className, ...restProps } = this.props
     return (
       <div className="form-group mb-3">
         {label && <label htmlFor="example-select">{label}</label>}
-        <select className="form-control" onChange={this.handleChange.bind(this)}>
+        <select value={value} className={`form-control ${className}`} {...restProps} onChange={this.handleChange.bind(this)} >
           {
             options.map(option => (
-              <option key={option.value}>{option.label}</option>
+              <option key={option.value} value={option.value}>{option.label}</option>
             ))
           }
         </select>
@@ -20,6 +20,6 @@ export default class Select extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value)
+    this.props.onChange(e.target.value)
   }
 }
