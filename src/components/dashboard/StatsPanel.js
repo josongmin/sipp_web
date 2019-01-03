@@ -43,13 +43,15 @@ export default class StatsPanel extends React.Component {
         <div className="row">
           <div className="col-xl-5">
             <div className="row">
-              {
-                stats.map(stat => (
-                  <div className="col-lg-6" key={stat.title}>
-                    <StatsCard {...stat} />
-                  </div>
-                ))
-              }
+              <div className="col-lg-6">
+                <StatsCard {...stats[0]} icon={'desktop-classic'} />
+              </div>
+              <div className="col-lg-6">
+                <StatsCard {...stats[1]} icon={'cart-plus'} />
+              </div>
+              <div className="col-lg-6">
+                <StatsCard {...stats[2]} icon={'currency-usd'} />
+              </div>
             </div>
           </div>
           <div className="col-xl-7">
