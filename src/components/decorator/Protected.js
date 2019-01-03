@@ -10,8 +10,8 @@ export default () => {
         const { userStore, ...restProps } = this.props
         return (
           <div>
-            {!userStore.isAuthenticated && restProps.match.path !== '/login' && <Redirect to={'/login'} />}
-            {userStore.isAuthenticated && restProps.match.path === '/login' && <Redirect to={'/'} />}
+            {!userStore.isAuthenticated && restProps.match.path !== '/login' && <Redirect to={'/login'} replace />}
+            {userStore.isAuthenticated && restProps.match.path === '/login' && <Redirect to={'/'} replace />}
             <Component {...restProps} />
           </div>
         )

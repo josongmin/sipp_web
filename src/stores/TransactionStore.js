@@ -8,6 +8,7 @@ export default class TransactionStore {
   @observable pageInfo
   @observable totalSize
   @observable filters
+  @observable transaction
 
   constructor() {
     this.pageInfo = {
@@ -97,6 +98,14 @@ export default class TransactionStore {
         this.data = items
         this.totalSize = totalSize
         this.pageInfo = getPageInfo(totalSize, params.page_no, params.page_size)
+      })
+  }
+
+  @action.bound
+  async getTrx(sipp_order_id) {
+    return axiosQueryApi('/trxs/' + sipp_order_id, 'get')
+      .then(res => {
+        this.transaction = res.data.order
       })
   }
 

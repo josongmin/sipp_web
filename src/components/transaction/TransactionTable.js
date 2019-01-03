@@ -5,7 +5,7 @@ import { numberWithCommas } from '../../utils/number'
 import Paging from './Paging'
 import './dataTables.bootstrap4.css'
 
-@inject('transactionStore')
+@inject('transactionStore', 'modalStore')
 @observer
 export default class TransactionTable extends React.Component {
   @observable pageSize
@@ -61,7 +61,7 @@ export default class TransactionTable extends React.Component {
               <tbody>
               {
                 data.map(datum => (
-                  <TR {...datum} key={datum.no} />
+                  <TR {...datum} key={datum.no} onClick={() => this.props.modalStore.showModal('TransactionDetail', { title: 'SHOPEE_PAY #' + datum.sipp_order_id, ...datum })} />
                 ))
               }
               </tbody>
@@ -91,7 +91,7 @@ const TR = (props) => {
     <tr role="row" className="odd">
       <td>{no}</td>
       <td>{service_name}</td>
-      <td>{service_order_id}</td>
+      <td onClick={props.onClick} style={{ cursor: 'pointer' }}>{service_order_id}</td>
       <td>{user_name_1}</td>
       <td>{user_name_2}</td>
       <td>{hp}</td>

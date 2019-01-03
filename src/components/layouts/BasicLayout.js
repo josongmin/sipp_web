@@ -1,9 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import LeftSidebar from './LeftSidebar'
 import HorizontalNav from './HorizontalNav'
-import TopBar from './TopBar'
 import Protected from '../decorator/Protected'
+import Modal from './Modal'
 
 @Protected()
 @observer
@@ -19,6 +18,7 @@ export default class BasicLayout extends React.Component {
             </div>
           </div>
         </div>
+        <Modal />
       </div>
     )
   }

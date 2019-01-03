@@ -159,6 +159,5 @@ function generateDayWiseTimeSeries(baseval, count, yrange) {
     baseval += 86400000;
     i++;
   }
-  console.log('seri', series)
   return series;
 }
