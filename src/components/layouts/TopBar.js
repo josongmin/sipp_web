@@ -10,7 +10,7 @@ export default class TopBar extends React.Component {
           <i className="mdi mdi-menu" />
         </button>
         <div className="app-search">
-          
+
         </div>
       </div>
     )

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import { Provider } from 'mobx-react'
 import { Router, Route, Switch } from 'react-router-dom'
 import DashboardPage from './pages/DashboardPage'
@@ -11,11 +11,11 @@ import { create } from "mobx-persist"
 
 const history = createBrowserHistory()
 
-class App extends Component {
+class App extends React.PureComponent {
   async componentWillMount() {
     const hydrate = create()
 
-    await hydrate("User", stores.userStore)
+    hydrate("User", stores.userStore)
   }
   render() {
     return (

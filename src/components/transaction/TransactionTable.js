@@ -16,7 +16,7 @@ export default class TransactionTable extends React.Component {
   render() {
     const { data = [], pageInfo, totalSize, getTrxs } = this.props.transactionStore
     return (
-      <div className="dataTables_wrapper dt-bootstrap4 no-footer">
+      <div className="dataTables_wrapper dt-bootstrap4 no-footer" style={{ overflowX: 'auto' }}>
         <div className="row">
           <div className="col-sm-12 col-md-6">
             <div className="dataTables_length" id="basic-datatable_length">
