@@ -34,9 +34,6 @@ export default class StatsPanel extends React.Component {
                   <a href="javascript: void(0);" className="btn btn-primary ml-2">
                     <i className="mdi mdi-autorenew" />
                   </a>
-                  <a href="javascript: void(0);" className="btn btn-primary ml-1">
-                    <i className="mdi mdi-filter-variant" />
-                  </a>
                 </form>
               </div>
               <h4 className="page-title">{title}</h4>
@@ -71,7 +68,7 @@ export default class StatsPanel extends React.Component {
 
 const options = {
   chart: {
-    height: 422,
+    height: 250,
     type: 'area',
     stacked: true,
     scroller: {

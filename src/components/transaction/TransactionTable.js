@@ -16,10 +16,10 @@ export default class TransactionTable extends React.Component {
   render() {
     const { data = [], pageInfo, totalSize, getTrxs } = this.props.transactionStore
     return (
-      <div className="dataTables_wrapper dt-bootstrap4 no-footer" style={{ overflowX: 'auto' }}>
+      <div className="dataTables_wrapper dt-bootstrap4 no-footer">
         <div className="row">
           <div className="col-sm-12 col-md-6">
-            <div className="dataTables_length" id="basic-datatable_length">
+            <div className="dataTables_length">
               <label>Display
                 <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm">
                   <option value="5">5</option>
@@ -38,7 +38,7 @@ export default class TransactionTable extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ overflowX: 'auto' }}>
           <div className="col-sm-12">
             <table id="basic-datatable" className="table dt-responsive dataTable nowrap" style={{ width: '100%' }}>
               <thead>
