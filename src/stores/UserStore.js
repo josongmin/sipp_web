@@ -7,6 +7,9 @@ export default class UserStore {
   @persist @observable accessToken
   @persist('object') @observable currentUser
 
+  constructor() {
+    this.isAuthenticated = null
+  }
   @action
   authenticate = ({ user, accessToken }) => {
     this.isAuthenticated = true

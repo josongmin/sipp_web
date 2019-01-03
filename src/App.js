@@ -15,7 +15,12 @@ class App extends React.PureComponent {
   async componentWillMount() {
     const hydrate = create()
 
-    hydrate("User", stores.userStore)
+    await hydrate("User", stores.userStore)
+      .then(() => {
+        if(stores.userStore.isAuthenticated === null) {
+          stores.userStore.isAuthenticated = false
+        }
+      })
   }
   render() {
     return (
