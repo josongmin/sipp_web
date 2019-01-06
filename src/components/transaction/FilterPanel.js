@@ -112,10 +112,10 @@ export default class FilterPanel extends React.Component {
                 <div className="col-sm-4">
                   <div className="row">
                     <div className="col-6">
-                      <Input label={'VA번호'} value={filters.va_no} onChange={(value) => setFilters('va_no', value)} />
+                      <Input label={'VA번호'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
                     </div>
                     <div className="col-6">
-                      <Input label={'주문번호'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value)} />
+                      <Input label={'주문번호'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
                     </div>
                   </div>
                 </div>
