@@ -110,6 +110,25 @@ export default class TransactionStore {
   }
 
   @action.bound
+  async getTrxWithOrder(key) {
+    let order = this.filters.order_by
+
+    if(this.filters.order_by_type !== key || !order) {
+      order = 'DESC'
+    } else if(order === 'DESC') {
+      order = 'ASC'
+    } else {
+      order = ''
+      key = ''
+    }
+
+    this.filters.order_by = order
+    this.filters.order_by_type = key
+
+    this.getTrxs({ page: 1 })
+  }
+
+  @action.bound
   setFilters(key, value) {
     this.filters[key] = value
   }

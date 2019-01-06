@@ -1,6 +1,7 @@
 import React from 'react'
 import { observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
+import classNames from 'classnames'
 import { numberWithCommas } from '../../utils/number'
 import Paging from './Paging'
 import './dataTables.bootstrap4.css'
@@ -14,7 +15,20 @@ export default class TransactionTable extends React.Component {
     this.pageSize = props.transactionStore.pageInfo.size
   }
   render() {
-    const { data = [], pageInfo, totalSize, getTrxs } = this.props.transactionStore
+    const { data = [], pageInfo, totalSize, getTrxs, filters: { order_by, order_by_type } } = this.props.transactionStore
+
+    const rqCls = classNames({
+      sorting: order_by_type !== 'request_dt' || order_by,
+      sorting_asc: order_by_type === 'request_dt' && order_by === 'ASC',
+      sorting_desc: order_by_type === 'request_dt' && order_by === 'DESC'
+    })
+
+    const tfCls = classNames({
+      sorting: order_by_type !== 'transfer_dt' || order_by,
+      sorting_asc: order_by_type === 'transfer_dt' && order_by === 'ASC',
+      sorting_desc: order_by_type === 'transfer_dt' && order_by === 'DESC'
+    })
+
     return (
       <div className="dataTables_wrapper dt-bootstrap4 no-footer">
         <div className="row">
@@ -27,6 +41,11 @@ export default class TransactionTable extends React.Component {
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
+                  <option value="100">200</option>
+                  <option value="100">300</option>
+                  <option value="100">400</option>
+                  <option value="100">500</option>
+                  <option value="100">1000</option>
                 </select> products
               </label>
             </div>
@@ -54,8 +73,8 @@ export default class TransactionTable extends React.Component {
                 <th>입금상태</th>
                 <th>VA</th>
                 <th>금액</th>
-                <th className="sorting">생성일시</th>
-                <th className="sorting">입금일시</th>
+                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>생성일시</th>
+                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>입금일시</th>
               </tr>
               </thead>
               <tbody>
@@ -82,6 +101,10 @@ export default class TransactionTable extends React.Component {
         </div>
       </div>
     )
+  }
+
+  handleClickSort(key) {
+    this.props.transactionStore.getTrxWithOrder(key)
   }
 }
 
