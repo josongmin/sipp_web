@@ -10,6 +10,7 @@
 
 @media screen and (min-width: 1200px) {
     .filterPanel .buttons {
+        text-align: right;
         padding: 0;
     }
 }

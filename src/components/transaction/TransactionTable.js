@@ -114,7 +114,7 @@ const TR = (props) => {
     <tr role="row" className="odd">
       <td>{no}</td>
       <td>{service_name}</td>
-      <td onClick={props.onClick} style={{ cursor: 'pointer' }}>{service_order_id}</td>
+      <td onClick={props.onClick} style={{ cursor: 'pointer', color: '#727cf5' }}>{service_order_id}</td>
       <td>{user_name_1}</td>
       <td>{user_name_2}</td>
       <td>{hp}</td>

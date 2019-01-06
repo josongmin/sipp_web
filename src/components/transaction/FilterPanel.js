@@ -30,7 +30,7 @@ export default class FilterPanel extends React.Component {
                   />
                 </div>
               </div>
-              <div className="row">
+              <div className="row no-gutters">
                 <div className="col-xl-9">
                   <div className="row">
                     <div className="col-sm-3">

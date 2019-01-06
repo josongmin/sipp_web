@@ -16,11 +16,13 @@ export default class ModalStore {
     this.visible = true
     this.type = type
     this.data = data
+    $('body').css('overflow', 'hidden')
   }
 
   @action.bound
   closeModal(type) {
     this.visible = false
     this.type = type
+    $('body').css('overflow', '')
   }
 }

@@ -22,7 +22,7 @@ export default class TransactionDetail extends React.Component {
       <div>
         <div className="modal-header">
           <h4 className="modal-title" id="myLargeModalLabel">{title}</h4>
-          <button type="button" className="close" data-dismiss="modal" aria-hidden="true" onClick={this.handleClickToggle}>×</button>
+          <button type="button" className="close" data-dismiss="modal" aria-hidden="true" onClick={this.props.onToggleModal}>×</button>
         </div>
         <div className="modal-body">
           <div className="pl-lg-4">
