@@ -9,8 +9,8 @@ export default class Loading extends React.Component {
     const { loading } = this.props.transactionStore
     return (
       <div style={{ position: 'fixed', zIndex: 10000, left: 0, right: 0, top: 0, bottom: 0, display: loading ? null : 'none' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', marginLeft: -25, marginTop: -25 }}>
-          <BarLoader size={50}
+        <div style={{ position: 'absolute', top: '50%', left: '50%', marginLeft: -15, marginTop: -15 }}>
+          <BarLoader size={30}
                      color={'#36D7B7'}
                      sizeUnit={"px"}
                      loading={true} />
