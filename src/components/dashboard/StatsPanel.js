@@ -1,7 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import StatsCard from '../dashboard/StatsCard'
-import DateRangePicker from '../forms/DateRangePicker'
 
 @observer
 export default class StatsPanel extends React.Component {
@@ -20,7 +19,7 @@ export default class StatsPanel extends React.Component {
   }
 
   render() {
-    const { stats = [], title } = this.props
+    const { stats = [], title, onGetData, dateInput } = this.props
     return (
       <div>
         <div className="row">
@@ -28,10 +27,8 @@ export default class StatsPanel extends React.Component {
             <div className="page-title-box">
               <div className="page-title-right">
                 <form className="form-inline">
-                  <div className="form-group">
-                    <DateRangePicker nomb />
-                  </div>
-                  <a href="javascript: void(0);" className="btn btn-primary ml-2">
+                  {dateInput}
+                  <a className="btn btn-primary ml-2" onClick={onGetData}>
                     <i className="mdi mdi-autorenew" />
                   </a>
                 </form>

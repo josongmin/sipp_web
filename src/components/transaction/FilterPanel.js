@@ -80,7 +80,6 @@ export default class FilterPanel extends React.Component {
                   </div>
                 </div>
               </div>
-
               <div className="row">
                 <div className="col-sm-8">
                   <div className="row">

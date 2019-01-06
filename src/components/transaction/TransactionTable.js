@@ -68,7 +68,7 @@ export default class TransactionTable extends React.Component {
             </table>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-sm-12 col-md-5">
             <div className="dataTables_info" id="basic-datatable_info" role="status" aria-live="polite">
               {`Showing products ${((pageInfo.page - 1) * pageInfo.size) + 1} to ${((pageInfo.page - 1) * pageInfo.size) + parseInt(pageInfo.size)} of ${numberWithCommas(totalSize)}`}
