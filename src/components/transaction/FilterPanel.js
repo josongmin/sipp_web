@@ -65,17 +65,17 @@ export default class FilterPanel extends React.Component {
                       <Input label={'수위인명'} value={filters.receiver_name} onChange={(value) => setFilters('receiver_name', value)} />
                     </div>
                     <div className="col-sm-3">
-                      <Input label={'핸드폰'} value={filters.phone} onChange={(value) => setFilters('phone', value)} />
+                      <Input label={'핸드폰'} value={filters.phone} onChange={(value) => setFilters('phone', value, 'phone')} />
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-4">
                   <div className="row">
                     <div className="col-6">
-                      <Input label={'최소 금액'} value={filters.transfer_amount_range_min} onChange={(value) => setFilters('transfer_amount_range_min', value)} /><span className="row-dash" style={{ top: 36 }}>-</span>
+                      <Input label={'최소 금액'} value={filters.transfer_amount_range_min} onChange={(value) => setFilters('transfer_amount_range_min', value, 'number')} /><span className="row-dash" style={{ top: 36 }}>-</span>
                     </div>
                     <div className="col-6">
-                      <Input label={'최대 금액'} value={filters.transfer_amount_range_max} onChange={(value) => setFilters('transfer_amount_range_max', value)} />
+                      <Input label={'최대 금액'} value={filters.transfer_amount_range_max} onChange={(value) => setFilters('transfer_amount_range_max', value, 'number')} />
                     </div>
                   </div>
                 </div>

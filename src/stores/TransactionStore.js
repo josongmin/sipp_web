@@ -133,7 +133,13 @@ export default class TransactionStore {
   }
 
   @action.bound
-  setFilters(key, value) {
+  setFilters(key, value, inputType) {
+    if(inputType === 'number') {
+      value = value.replace(/[^0-9\.]+/g, '')
+      console.log(key, value, inputType)
+    } else if(inputType === 'phone') {
+      value = value.replace(/[^0-9\+\.]+/g, '')
+    }
     this.filters[key] = value
   }
 
