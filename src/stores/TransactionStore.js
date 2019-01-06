@@ -9,6 +9,7 @@ export default class TransactionStore {
   @observable totalSize
   @observable filters
   @observable transaction
+  @observable loading
 
   constructor() {
     this.pageInfo = {
@@ -37,6 +38,7 @@ export default class TransactionStore {
     this.start_time_ref = null
     this.end_time_ref = null
 
+    this.loading = false
     reaction(
       () => [this.filters.dt_range_type, `${this.filters.start_date.format('YYYYMMDDHHMM')}00-${this.filters.end_date.format('YYYYMMDDHHMM')}00`],
       ([dt_range_type, range_date]) => {
@@ -85,6 +87,7 @@ export default class TransactionStore {
 
   @action.bound
   async getTrxs(data = {}) {
+    this.loading = true
     const { page, size, ...restData } = data
     const params = {
       page_no: page || 1,
@@ -99,6 +102,7 @@ export default class TransactionStore {
         this.totalSize = totalSize
         this.pageInfo = getPageInfo(totalSize, params.page_no, params.page_size)
       })
+      .finally(() => this.loading = false)
   }
 
   @action.bound

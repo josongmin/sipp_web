@@ -4,6 +4,7 @@ import BasicLayout from '../components/layouts/BasicLayout'
 import Select from '../components/forms/Select'
 import FilterPanel from '../components/transaction/FilterPanel'
 import TransactionTable from '../components/transaction/TransactionTable'
+import Loading from '../components/layouts/Loading'
 
 @inject('transactionStore')
 @observer
@@ -28,7 +29,7 @@ export default class TransactionPage extends React.Component {
                       {label: 'Shopee pay', value: 'SHOPEE_PAY'},
                       {label: 'Shopee Kredit', value: 'SHOPEE_KREDIT'},
                     ]}
-                          value={filters.dt_range_type}
+                          value={filters.service_type}
                           onChange={(value) => setFilters('service_type', value)}
                   />
                 </form>
@@ -47,6 +48,7 @@ export default class TransactionPage extends React.Component {
             </div>
           </div>
         </div>
+        <Loading />
       </BasicLayout>
     )
   }
