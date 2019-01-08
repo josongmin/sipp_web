@@ -1,21 +1,42 @@
 import React from 'react'
+import { action, observable, reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import StatsCard from '../dashboard/StatsCard'
+import './StatsPanel.css'
+
+const graphType = {
+  'graph_amount': {
+    color: '#727cf5'
+  }
+}
 
 @observer
 export default class StatsPanel extends React.Component {
+  @observable graphType
+  @observable series
   constructor(props) {
     super(props)
 
     this.chart = null
+    this.graphType = 'graph_amount'
   }
   componentDidMount() {
-    let chart = new ApexCharts(
-      this.chart,
-      options
-    );
+    this.reaction = reaction(
+      () => this.graphType,
+      (graphType) => {
+        this.chartRender(graphType)
+      }
+    )
+  }
 
-    chart.render()
+  componentDidUpdate(prevProps) {
+    if(prevProps.graphs !== this.props.graphs) {
+      this.chartRender()
+    }
+  }
+
+  componentWillUnmount() {
+    this.reaction()
   }
 
   render() {
@@ -29,7 +50,7 @@ export default class StatsPanel extends React.Component {
                 <form className="form-inline">
                   {dateInput}
                   <a className="btn btn-primary ml-2" onClick={onGetData}>
-                    <i className="mdi mdi-autorenew" />
+                    <i className="mdi mdi-autorenew" style={{ color: '#fff' }} />
                   </a>
                 </form>
               </div>
@@ -54,7 +75,10 @@ export default class StatsPanel extends React.Component {
           <div className="col-xl-7">
             <div className="card">
               <div className="card-body">
-                <h4 className="header-title mb-4">Stacked Area</h4>
+                <div className="text-right" style={{}}>
+                  <button type="button" className={`btn btn-${this.graphType === 'graph_amount' ? '' : 'outline-'}info btn-sm mr-1 statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_amount')}>거래금액</button>
+                  <button type="button" className={`btn btn-${this.graphType === 'graph_trx' ? '' : 'outline-'}success btn-sm statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_trx')}>거래건수</button>
+                </div>
                 <div ref={c => this.chart = c} className="apex-charts" />
               </div>
             </div>
@@ -63,24 +87,59 @@ export default class StatsPanel extends React.Component {
       </div>
     )
   }
+
+  @action.bound
+  handleClickButton(type) {
+    this.graphType = type
+  }
+
+  chartRender(graphType = this.graphType) {
+    const [graph_trx, graph_amount] = this.props.graphs
+    let data = graphType === 'graph_trx' ? graph_trx : graph_amount
+    const { graph_items } = data
+    options.series = graph_items.map(({name, values}) => {
+      return {
+        name,
+        data: values.map(value => [parseInt(value[0]), value[1]])
+      }
+    })
+    let chart = new ApexCharts(
+      this.chart,
+      options
+    )
+
+    chart.render()
+  }
 }
 
 const options = {
   chart: {
-    height: 250,
+    height: 321,
     type: 'area',
     stacked: true,
     scroller: {
       enabled: true
     },
     events: {
-      selection: function (chart, e) {
+      selection: (chart, e) => {
         console.log(new Date(e.xaxis.min))
       }
     },
-
+    animations: {
+      enabled: true,
+      easing: 'easeinout',
+      speed: 400,
+      animateGradually: {
+        enabled: true,
+        delay: 100
+      },
+      dynamicAnimation: {
+        enabled: true,
+        speed: 100
+      }
+    },
   },
-  colors: ['#727cf5', '#0acf97', '#e3eaef'],
+  colors: ['#727cf5', '#0acf97'],
   dataLabels: {
     enabled: false
   },
@@ -88,29 +147,6 @@ const options = {
     width: 2,
     curve: 'smooth'
   },
-  series: [{
-    name: 'BCA',
-    data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
-      min: 10,
-      max: 60
-    })
-  },
-    {
-      name: '만다리',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
-        min: 10,
-        max: 20
-      })
-    },
-
-    {
-      name: '합계',
-      data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
-        min: 10,
-        max: 15
-      })
-    }
-  ],
   fill: {
     gradient: {
       enabled: true,

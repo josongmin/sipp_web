@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 import BasicLayout from '../components/layouts/BasicLayout'
 import StatsPanel from '../components/dashboard/StatsPanel'
 import DateRangePicker from '../components/forms/DateRangePicker'
+import Select from '../components/forms/Select'
 
 @inject('dashboardStore')
 @observer
@@ -13,35 +14,44 @@ export default class DashboardPage extends React.Component {
     this.props.dashboardStore.getYearGraph()
   }
   render() {
-    const { dailyStats, monthStats, yearStats, getDayGraph, getMonthGraph, getYearGraph } = this.props.dashboardStore
+    const { dailyStats, monthStats, yearStats, dayGraphs, monthGraphs, yearGraphs, getDayGraph, getMonthGraph, getYearGraph, day, month, year, setDate } = this.props.dashboardStore
     return (
       <BasicLayout {...this.props}>
         <h3 style={{ marginTop: 30 }}>DASHBOARD</h3>
         <StatsPanel title={'DAILY'}
                     stats={dailyStats}
+                    graphs={dayGraphs}
                     onGetData={getDayGraph}
                     dateInput={
                       <div className="form-group">
-                        <DateRangePicker nomb onChange={(value) => {}} />
+                        <DateRangePicker nomb onChange={(value) => {setDate('day', value)}} value={day.format('DD/MM/YYYY')} />
                       </div>
                     }
         />
         <StatsPanel title={'MONTHLY'}
                     stats={monthStats}
+                    graphs={monthGraphs}
                     onGetData={getMonthGraph}
                     dateInput={
                       <div className="form-group">
-                        <input className="form-control" type="month" name="month" />
+                        <input className="form-control" type="month" name="month" onChange={(e) => setDate('month', e.target.value)} value={month} />
                       </div>
                     }
         />
         <StatsPanel title={'YEAR'}
                     stats={yearStats}
+                    graphs={yearGraphs}
                     onGetData={getYearGraph}
                     dateInput={
-                      <div className="form-group">
-                        <input className="form-control" type="year" name="month" />
-                      </div>
+                      <Select options={
+                        [
+                          {label: '2018', value: '2018'},
+                          {label: '2019', value: '2019'}
+                        ]}
+                              value={year}
+                              nomb
+                              onChange={(value) => setDate('year', value)}
+                      />
                     }
         />
       </BasicLayout>

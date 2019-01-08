@@ -1,0 +1,11 @@
+.statsBtn.btn.btn-sm.btn-outline-info:hover {
+    background-color: #fff;
+    border-color: #39afd1;
+    color: #39afd1;
+}
+
+.statsBtn.btn.btn-sm.btn-outline-success:hover {
+    background-color: #fff;
+    border-color: #0acf97;
+    color: #0acf97;
+}
