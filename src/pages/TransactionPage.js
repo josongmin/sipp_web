@@ -14,7 +14,7 @@ export default class TransactionPage extends React.Component {
   }
 
   render() {
-    const { filters, setFilters } = this.props.transactionStore
+    const { filters, setFilters, loading } = this.props.transactionStore
     return (
       <BasicLayout {...this.props}>
         <div className="row">
@@ -48,7 +48,7 @@ export default class TransactionPage extends React.Component {
             </div>
           </div>
         </div>
-        <Loading />
+        <Loading loading={loading} />
       </BasicLayout>
     )
   }

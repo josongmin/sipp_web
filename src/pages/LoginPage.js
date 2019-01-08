@@ -2,10 +2,12 @@ import React from 'react'
 import { action, observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import Protected from '../components/decorator/Protected'
+import Loading from '../components/layouts/Loading'
+import Modal from '../components/layouts/Modal'
 import './LoginPage.css'
 
 @Protected()
-@inject('userStore')
+@inject('userStore', 'modalStore')
 @observer
 export default class LoginPage extends React.Component {
   @observable email
@@ -65,7 +67,6 @@ export default class LoginPage extends React.Component {
                 </div>
                 <div className="row mt-3">
                   <div className="col-12 text-center">
-
                   </div>
                 </div>
 
@@ -73,6 +74,8 @@ export default class LoginPage extends React.Component {
             </div>
           </div>
         </div>
+        <Loading loading={this.props.userStore.loading} size={15} />
+        <Modal />
       </div>
     )
   }
@@ -87,7 +90,13 @@ export default class LoginPage extends React.Component {
     e.preventDefault()
     if(this.email && this.password) {
       await this.props.userStore.login(this.email, this.password)
+        .catch(err => {
+          if(err.response.status === 401) {
+            this.props.userStore.logout()
+            const { status } = err.response.data
+            this.props.modalStore.showModal('LoginAlert', { msg: status.msg, style: { width: 250, margin: '0 auto' }})
+          }
+        })
     }
   }
-
 }

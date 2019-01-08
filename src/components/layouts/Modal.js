@@ -1,7 +1,8 @@
 import React from 'react'
-import { action, observable } from 'mobx'
+import { action, observable, toJS } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import TransactionDetail from '../transaction/TransactionDetail'
+import LoginAlert from './LoginAlert'
 
 @inject("modalStore")
 @observer
@@ -15,15 +16,16 @@ export default class Modal extends React.Component {
   }
 
   render() {
-    const { type, visible, data, closeModal } = this.modalStore
+    const { type, visible, data = {}, closeModal } = this.modalStore
+    const { style, ...restData } = data || {}
     const ModalContentComponent = this.getModalComponent(type)
     return (
       <span>
         <div className={`modal fade ${visible ? 'show' : ''}`} id="bs-example-modal-lg" tabIndex="-1" role="dialog" onClick={this.handleClickModal.bind(this)}
              aria-labelledby="myLargeModalLabel" style={{ zIndex: visible ? 1050 : -1, display: 'block', paddingRight: 15, overflowX: 'hidden', overflowY: 'auto' }}>
           <div className="modal-dialog modal-lg" onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
-            <div className="modal-content">
-              {ModalContentComponent && <ModalContentComponent onToggleModal={this.handleClickToggle} {...data} />}
+            <div className="modal-content" style={toJS(style)}>
+              {ModalContentComponent && <ModalContentComponent onToggleModal={this.handleClickToggle} {...restData} />}
             </div>
           </div>
         </div>
@@ -49,6 +51,8 @@ export default class Modal extends React.Component {
     switch (type) {
       case "TransactionDetail":
         return TransactionDetail
+      case "LoginAlert":
+        return LoginAlert
       default:
         return null
     }

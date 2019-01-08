@@ -1,5 +1,5 @@
 import { action, observable, reaction } from 'mobx'
-import { axiosQueryApi } from '../utils/axios'
+import { axiosApi, axiosQueryApi } from '../utils/axios'
 import { getPageInfo } from '../utils/page'
 import moment from 'moment'
 
@@ -10,6 +10,7 @@ export default class TransactionStore {
   @observable filters
   @observable transaction
   @observable loading
+  @observable excelLoading
 
   constructor() {
     this.pageInfo = {
@@ -39,6 +40,7 @@ export default class TransactionStore {
     this.end_time_ref = null
 
     this.loading = false
+    this.excelLoading = false
     reaction(
       () => [this.filters.dt_range_type, `${this.filters.start_date.format('YYYYMMDDHHMM')}00-${this.filters.end_date.format('YYYYMMDDHHMM')}00`],
       ([dt_range_type, range_date]) => {
@@ -160,6 +162,23 @@ export default class TransactionStore {
     if(type === '1M') {
       this.setFilters('start_date', moment().subtract(1, 'months').startOf('date'))
     }
+  }
+
+  @action.bound
+  excelDownload() {
+    if(this.excelLoading) return null
+    this.excelLoading = true
+    const params = {
+      ...this.getFilters()
+    }
+
+    return axiosQueryApi('/trxs/excel/build', 'post', params)
+      .then(({ data }) => {
+        window.location = data.url
+        const URL = window.URL || window.webkitURL
+        setTimeout(() => { URL.revokeObjectURL(data.url) }, 100)
+      })
+      .finally(() => this.excelLoading = false)
   }
 }
 

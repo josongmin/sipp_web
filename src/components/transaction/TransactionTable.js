@@ -2,6 +2,7 @@ import React from 'react'
 import { observable } from 'mobx'
 import { inject, observer } from 'mobx-react'
 import classNames from 'classnames'
+import ClipLoader from 'react-spinners/ClipLoader'
 import { numberWithCommas } from '../../utils/number'
 import Paging from './Paging'
 import './dataTables.bootstrap4.css'
@@ -15,7 +16,7 @@ export default class TransactionTable extends React.Component {
     this.pageSize = props.transactionStore.pageInfo.size
   }
   render() {
-    const { data = [], pageInfo, totalSize, getTrxs, filters: { order_by, order_by_type } } = this.props.transactionStore
+    const { data = [], pageInfo, totalSize, getTrxs, filters: { order_by, order_by_type }, excelDownload, excelLoading } = this.props.transactionStore
 
     const rqCls = classNames({
       sorting: order_by_type !== 'request_dt' || order_by,
@@ -52,8 +53,18 @@ export default class TransactionTable extends React.Component {
           </div>
           <div className="col-sm-12 col-md-6">
             <div id="basic-datatable_filter" className="dataTables_filter">
-              <button type="button" className="btn btn-success" style={{ marginRight: 5 }}>EXCEL</button>
-              <button type="button" className="btn btn-danger" onClick={() => getTrxs({ size: this.pageSize })}>SEARCH</button>
+              { !excelLoading ?
+                <span style={{ display: 'inline-block', verticalAlign: 'text-top', marginRight: 20 }}>
+                  <ClipLoader size={22}
+                              color={'#39afd1'}
+                              sizeUnit={"px"}
+                              loading={true} />
+                </span> :
+                <button type="button" className="btn btn-success" onClick={excelDownload}>
+                  EXCEL
+                </button>
+              }
+              <button type="button" className="btn btn-danger" onClick={() => getTrxs({ size: this.pageSize })} style={{ marginLeft: 5 }}>SEARCH</button>
             </div>
           </div>
         </div>

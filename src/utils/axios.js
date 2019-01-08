@@ -25,26 +25,30 @@ export function axiosApi(url, method = "get", data, options = {}) {
     ...options
   }
 
-  return axios(config).catch(function(error) {
-    if (error.response) {
-      const { data } = error.response;
-      if (data.message) {
+  if(getLocalstorage('User').accessToken) {
+    config.headers['sipp-token'] = getLocalstorage('User').accessToken
+  }
+
+  return axios(config)
+    .then(res => {
+      if(res.headers['sipp-token']) stores.userStore.setToken(res.headers['sipp-token'])
+      return res
+    })
+    .catch((error) => {
+      if (error.response) {
+        const { data } = error.response
+
+      } else if (error.request) {
+        console.log(error.request)
+      } else {
+
       }
-    } else if (error.request) {
-      console.log(error.request)
-    } else {
-    }
 
     throw error
   })
 }
 
-export function axiosQueryApi(
-  url,
-  method = "get",
-  data,
-  options = {}
-) {
+export function axiosQueryApi(url, method = "get", data, options = {}) {
   const defaultConfing = {
     url: URL + url + qs.stringify(data, { addQueryPrefix: true }),
     method,
@@ -54,19 +58,23 @@ export function axiosQueryApi(
     }
   }
 
-  if(stores.userStore.accessToken) {
-    defaultConfing.headers['sipp-token'] = stores.userStore.accessToken
-  }
-
   const config = {
     ...defaultConfing,
     ...data,
     ...options
   }
 
+  if(getLocalstorage('User').accessToken) {
+    config.headers['sipp-token'] = getLocalstorage('User').accessToken
+  }
+
   return axios(config)
-    .catch(function(error) {
-      if (error.response) {
+    .then(res => {
+      if(res.headers['sipp-token']) stores.userStore.setToken(res.headers['sipp-token'])
+      return res
+    })
+    .catch((error) => {
+      if(error.response) {
         const { data } = error.response;
         if (data.message) {
         }
@@ -78,4 +86,13 @@ export function axiosQueryApi(
 
       throw error
     })
+}
+
+function getLocalstorage(key) {
+  const user = localStorage.getItem(key)
+  if(user) {
+    return JSON.parse(user)
+  }
+
+  return {}
 }

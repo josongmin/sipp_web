@@ -88,7 +88,6 @@ const options = {
     width: 2,
     curve: 'smooth'
   },
-
   series: [{
     name: 'BCA',
     data: generateDayWiseTimeSeries(new Date('11 Feb 2017').getTime(), 20, {
