@@ -4,12 +4,6 @@ import { observer } from 'mobx-react'
 import StatsCard from '../dashboard/StatsCard'
 import './StatsPanel.css'
 
-const graphType = {
-  'graph_amount': {
-    color: '#727cf5'
-  }
-}
-
 @observer
 export default class StatsPanel extends React.Component {
   @observable graphType
@@ -19,8 +13,7 @@ export default class StatsPanel extends React.Component {
 
     this.chart = null
     this.graphType = 'graph_amount'
-  }
-  componentDidMount() {
+
     this.reaction = reaction(
       () => this.graphType,
       (graphType) => {
@@ -58,7 +51,7 @@ export default class StatsPanel extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ minHeight: 431 }}>
           <div className="col-xl-5">
             <div className="row">
               <div className="col-lg-6">
@@ -100,7 +93,7 @@ export default class StatsPanel extends React.Component {
     options.series = graph_items.map(({name, values}) => {
       return {
         name,
-        data: values.map(value => [parseInt(value[0]), value[1]])
+        data: values
       }
     })
 
@@ -146,14 +139,14 @@ const options = {
     animations: {
       enabled: true,
       easing: 'easeinout',
-      speed: 400,
+      speed: 800,
       animateGradually: {
         enabled: true,
-        delay: 100
+        delay: 150
       },
       dynamicAnimation: {
         enabled: true,
-        speed: 100
+        speed: 150
       }
     },
   },
