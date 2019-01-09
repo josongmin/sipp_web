@@ -42,7 +42,7 @@ export default class UserStore {
     bodyFormData.set('password', password)
     return axiosApi('/signin', 'post', bodyFormData, { headers: {'Content-Type': 'multipart/form-data' }})
       .then((res) => {
-        this.authenticate({ accessToken: res.headers['sipp-token'] })
+        this.authenticate({ user: res.data.user, accessToken: res.headers['sipp-token'] })
       })
       .finally(() => this.loading = false)
   }
