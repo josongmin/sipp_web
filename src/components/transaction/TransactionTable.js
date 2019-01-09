@@ -36,7 +36,7 @@ export default class TransactionTable extends React.Component {
           <div className="col-sm-12 col-md-6">
             <div className="dataTables_length">
               <label>Display
-                <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm">
+                <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm ml-1">
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="25">25</option>
@@ -106,7 +106,7 @@ export default class TransactionTable extends React.Component {
           </div>
           <div className="col-sm-12 col-md-7">
             <div className="dataTables_paginate paging_simple_numbers" id="basic-datatable_paginate">
-              <Paging pageInfo={pageInfo} onChangePage={(page) => {getTrxs({ page })}} />
+              <Paging pageInfo={pageInfo} onChangePage={(page) => {getTrxs({ page }, true)}} />
             </div>
           </div>
         </div>
