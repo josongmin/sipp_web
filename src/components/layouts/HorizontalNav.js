@@ -15,7 +15,8 @@ export default class HorizontalNav extends React.Component {
             <Link to={'/'} className="logo" style={{ display: 'inline-block' }}>
 
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
-                SHOPEE
+                
+                <img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png" alt="Google" height="44" width="120" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
             {
@@ -43,8 +44,8 @@ export default class HorizontalNav extends React.Component {
             }
           </div>
         </div>
-        <div className="topnav">
-          <div className="container-fluid">
+        <div className="topnav" >
+          <div className="container-fluid" >
             <nav className="navbar navbar-dark navbar-expand-lg topnav-menu">
 
               <div className="collapse navbar-collapse" id="topnav-menu-content">
