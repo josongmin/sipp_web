@@ -19,6 +19,13 @@ export default class HorizontalNav extends React.Component {
                 <img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png" alt="Google" height="44" width="120" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
+            <a className="navbar-toggle" data-toggle="collapse" data-target="#topnav-menu-content">
+              <div className="lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </a>
             {
               isAuthenticated &&
               <ul className="list-unstyled topbar-right-menu float-right mb-0">

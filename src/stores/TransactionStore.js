@@ -55,7 +55,7 @@ export default class TransactionStore {
 
     reaction(
       () => [this.filters.transfer_amount_range_min, this.filters.transfer_amount_range_max],
-      (min, max) => {
+      ([min, max]) => {
         if(min && max) {
           this.filters['transfer_amount_range'] = `${min}-${max}`
         }
@@ -147,7 +147,6 @@ export default class TransactionStore {
   setFilters(key, value, inputType) {
     if(inputType === 'number') {
       value = value.replace(/[^0-9\.]+/g, '')
-      console.log(key, value, inputType)
     } else if(inputType === 'phone') {
       value = value.replace(/[^0-9\+\.]+/g, '')
     }

@@ -7,7 +7,10 @@ export default class DateRangePicker extends React.Component {
   componentDidMount() {
     this.$el = $(this.el)
     this.$el.daterangepicker({
-      singleDatePicker: true
+      singleDatePicker: true,
+      locale: {
+        format: 'DD/MM/YYYY'
+      }
     }, (start) => {
       this.props.onChange(start)
     })
