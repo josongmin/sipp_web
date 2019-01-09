@@ -103,6 +103,24 @@ export default class StatsPanel extends React.Component {
         data: values.map(value => [parseInt(value[0]), value[1]])
       }
     })
+
+    if(this.props.title === 'DAILY') {
+      options.tooltip = {
+        x: {
+          show: true,
+          format: 'dd/MM/yyyy HH:mm',
+          formatter: undefined,
+        }
+      }
+    } else {
+      options.tooltip = {
+        x: {
+          show: true,
+          format: 'dd/MM/yyyy',
+          formatter: undefined,
+        }
+      }
+    }
     let chart = new ApexCharts(
       this.chart,
       options
@@ -159,7 +177,10 @@ const options = {
     horizontalAlign: 'left'
   },
   xaxis: {
-    type: 'datetime'
+    type: 'datetime',
+    tooltip: {
+      enabled: false
+    }
   },
   grid: {
     row: {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { inject, observer } from 'mobx-react'
 import BasicLayout from '../components/layouts/BasicLayout'
+import Loading from '../components/layouts/Loading'
 import StatsPanel from '../components/dashboard/StatsPanel'
 import DateRangePicker from '../components/forms/DateRangePicker'
 import Select from '../components/forms/Select'
@@ -9,12 +10,10 @@ import Select from '../components/forms/Select'
 @observer
 export default class DashboardPage extends React.Component {
   async componentDidMount() {
-    this.props.dashboardStore.getDayGraph()
-    this.props.dashboardStore.getMonthGraph()
-    this.props.dashboardStore.getYearGraph()
+    this.props.dashboardStore.getAllGraph()
   }
   render() {
-    const { dailyStats, monthStats, yearStats, dayGraphs, monthGraphs, yearGraphs, getDayGraph, getMonthGraph, getYearGraph, day, month, year, setDate } = this.props.dashboardStore
+    const { dailyStats, monthStats, yearStats, dayGraphs, monthGraphs, yearGraphs, getDayGraph, getMonthGraph, getYearGraph, day, month, year, setDate, loading } = this.props.dashboardStore
     return (
       <BasicLayout {...this.props}>
         <h3 style={{ marginTop: 30 }}>DASHBOARD</h3>
@@ -54,6 +53,7 @@ export default class DashboardPage extends React.Component {
                       />
                     }
         />
+        <Loading loading={loading} />
       </BasicLayout>
     )
   }
