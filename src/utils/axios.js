@@ -77,7 +77,9 @@ export function axiosQueryApi(url, method = "get", data, options = {}) {
         const { data } = error.response
         if (data) {
           const { status } = data
-          stores.modalStore.showModal('LoginAlert', { msg: status.msg, style: { width: 280, margin: '0 auto' }})
+          setTimeout(() => {
+            stores.modalStore.showModal('LoginAlert', { msg: status.msg, style: { width: 280, margin: '0 auto' }})
+          }, 500)
         }
       } else if (error.request) {
         console.log(error.request)
