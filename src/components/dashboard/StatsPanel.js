@@ -97,7 +97,7 @@ export default class StatsPanel extends React.Component {
       }
     })
 
-    if(this.props.title === 'DAILY') {
+    if(this.props.title === 'Hourly') {
       options.tooltip = {
         x: {
           show: true,

@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
+import logoImg from '../../images/logo-dark.png'
+
 
 @inject('userStore')
 @observer
@@ -15,8 +17,8 @@ export default class HorizontalNav extends React.Component {
             <Link to={'/'} className="logo" style={{ display: 'inline-block' }}>
 
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
-                
-                <img src="../images/logo-dark.png" alt="Shopee" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
+
+                <img src={logoImg} alt="Shopee" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
             <a className="navbar-toggle" data-toggle="collapse" data-target="#topnav-menu-content">
@@ -56,7 +58,7 @@ export default class HorizontalNav extends React.Component {
             <nav className="navbar navbar-dark navbar-expand-lg topnav-menu">
 
               <div className="collapse navbar-collapse" id="topnav-menu-content">
-                <ul className="navbar-nav"> 
+                <ul className="navbar-nav">
                   <li className="nav-item">
                     <Link to="/" className={`nav-link ${match.path === '/' ? 'active' : ''}`}>
                       <i className="mdi mdi-speedometer mr-1"/>
