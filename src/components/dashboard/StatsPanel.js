@@ -42,7 +42,7 @@ export default class StatsPanel extends React.Component {
               <div className="page-title-right">
                 <form className="form-inline">
                   {dateInput}
-                  <a className="btn btn-primary ml-2" onClick={onGetData}>
+                  <a className="btn btn-primary ml-2" onClick={() => onGetData(false)}>
                     <i className="mdi mdi-autorenew" style={{ color: '#fff' }} />
                   </a>
                 </form>
