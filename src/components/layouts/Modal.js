@@ -22,8 +22,8 @@ export default class Modal extends React.Component {
     return (
       <span>
         <div className={`modal fade ${visible ? 'show' : ''}`} id="bs-example-modal-lg" tabIndex="-1" role="dialog" onClick={this.handleClickModal.bind(this)}
-             aria-labelledby="myLargeModalLabel" style={{ zIndex: visible ? 1050 : -1, display: 'block', paddingRight: 15, overflowX: 'hidden', overflowY: 'auto' }}>
-          <div className="modal-dialog modal-lg" onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
+             aria-labelledby="myLargeModalLabel" style={{ zIndex: visible ? 1050 : -1, display: 'block', overflowX: 'hidden', overflowY: 'auto' }}>
+          <div className="modal-dialog modal-dialog-centered modal-lg" onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
             <div className="modal-content" style={toJS(style)}>
               {ModalContentComponent && <ModalContentComponent onToggleModal={this.handleClickToggle} {...restData} />}
             </div>
