@@ -19,23 +19,7 @@ export default class TransactionStore {
       size: 25
     }
 
-    this.filters = {
-      dt_range_type: 'request_dt_range',
-      start_date: moment(),
-      end_date: moment(),
-      service_type: '',
-      transfer_amount_range_min: '',
-      transfer_amount_range_max: '',
-      bank: '',
-      status: '',
-      user_name: '',
-      receiver_name: '',
-      phone: '',
-      va_no: '',
-      service_order_id: '',
-      order_by: '',
-      order_by_type: '',
-    }
+    this.resetFilters()
 
     this.start_time_ref = null
     this.end_time_ref = null
@@ -56,11 +40,31 @@ export default class TransactionStore {
     reaction(
       () => [this.filters.transfer_amount_range_min, this.filters.transfer_amount_range_max],
       ([min, max]) => {
-        if(min && max) {
-          this.filters['transfer_amount_range'] = `${min}-${max}`
-        }
+        this.filters['transfer_amount_range'] = (min && max) ? `${min}-${max}` : ''
       }
     )
+  }
+
+  resetFilters() {
+    this.filters = {
+      dt_range_type: 'request_dt_range',
+      start_date: moment(),
+      end_date: moment(),
+      service_type: '',
+      transfer_amount_range_min: '',
+      transfer_amount_range_max: '',
+      bank: '',
+      status: '',
+      user_name: '',
+      receiver_name: '',
+      phone: '',
+      va_no: '',
+      service_order_id: '',
+      order_by: '',
+      order_by_type: '',
+    }
+
+    this.filtersCache = this.getFilters()
   }
 
   getFilters() {
