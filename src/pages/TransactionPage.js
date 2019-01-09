@@ -10,6 +10,7 @@ import Loading from '../components/layouts/Loading'
 @observer
 export default class TransactionPage extends React.Component {
   async componentDidMount() {
+    this.props.transactionStore.resetFilters()
     await this.props.transactionStore.getTrxs()
   }
 
