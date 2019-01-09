@@ -37,7 +37,7 @@ export default class DashboardPage extends React.Component {
                       </div>
                     }
         />
-        <StatsPanel title={'YEAR'}
+        <StatsPanel title={'Monthly'}
                     stats={yearStats}
                     graphs={yearGraphs}
                     onGetData={getYearGraph}

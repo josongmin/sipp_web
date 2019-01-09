@@ -16,7 +16,7 @@ export default class HorizontalNav extends React.Component {
 
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
                 
-                <img src="https://coderthemes.com/hyper/assets/images/logo-dark.png" alt="Google" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
+                <img src="../images/logo-dark.png" alt="Shopee" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
             <a className="navbar-toggle" data-toggle="collapse" data-target="#topnav-menu-content">
