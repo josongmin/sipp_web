@@ -21,7 +21,7 @@ export default class LoginPage extends React.Component {
   }
   render() {
     return (
-      <div className="authentication-bg">
+      <div className="authentication-bg" style={{ minHeight: '100%' }}>
         <div className="account-pages mt-5 mb-5">
           <div className="container">
             <div className="row justify-content-center">
