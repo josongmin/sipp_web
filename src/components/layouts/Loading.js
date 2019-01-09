@@ -5,10 +5,10 @@ import BarLoader from 'react-spinners/BeatLoader'
 @observer
 export default class Loading extends React.Component {
   render() {
-    const { loading, size = 30 } = this.props
+    const { loading, size = 15 } = this.props
     return (
       <div style={{ position: 'fixed', zIndex: 10000, left: 0, right: 0, top: 0, bottom: 0, display: loading ? null : 'none' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', marginLeft: -(size/2), marginTop: -(size/2) }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', marginLeft: -28, marginTop: -(size/2) }}>
           <BarLoader size={size}
                      color={'#36D7B7'}
                      sizeUnit={"px"}

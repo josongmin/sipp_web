@@ -11,6 +11,7 @@ export default class TransactionStore {
   @observable transaction
   @observable loading
   @observable excelLoading
+  filtersCache
 
   constructor() {
     this.pageInfo = {
@@ -88,14 +89,15 @@ export default class TransactionStore {
   }
 
   @action.bound
-  async getTrxs(data = {}) {
+  async getTrxs(data = {}, isFiltersCache = false) {
     this.loading = true
     const { page, size, ...restData } = data
+    const filters = isFiltersCache ? this.filtersCache : this.getFilters()
     const params = {
       page_no: page || 1,
       page_size: size || this.pageInfo.size,
       ...restData,
-      ...this.getFilters()
+      ...filters
     }
     return axiosQueryApi('/trxs', 'get', params)
       .then(res => {
@@ -103,16 +105,21 @@ export default class TransactionStore {
         this.data = items
         this.totalSize = totalSize
         this.pageInfo = getPageInfo(totalSize, params.page_no, params.page_size)
+        this.filtersCache = filters
       })
       .finally(() => this.loading = false)
   }
 
   @action.bound
   async getTrx(sipp_order_id) {
+    if(this.loading) return false
+    this.transaction = null
+    this.loading = true
     return axiosQueryApi('/trxs/' + sipp_order_id, 'get')
       .then(res => {
         this.transaction = res.data.order
       })
+      .finally(() => this.loading = false)
   }
 
   @action.bound
@@ -130,8 +137,10 @@ export default class TransactionStore {
 
     this.filters.order_by = order
     this.filters.order_by_type = key
+    this.filtersCache.order_by = order
+    this.filtersCache.order_by_type = key
 
-    this.getTrxs({ page: 1 })
+    this.getTrxs({ page: 1 }, true)
   }
 
   @action.bound

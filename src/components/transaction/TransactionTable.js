@@ -36,24 +36,24 @@ export default class TransactionTable extends React.Component {
           <div className="col-sm-12 col-md-6">
             <div className="dataTables_length">
               <label>Display
-                <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm">
+                <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm ml-1">
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                  <option value="100">200</option>
-                  <option value="100">300</option>
-                  <option value="100">400</option>
-                  <option value="100">500</option>
-                  <option value="100">1000</option>
+                  <option value="200">200</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
                 </select> products
               </label>
             </div>
           </div>
           <div className="col-sm-12 col-md-6">
             <div id="basic-datatable_filter" className="dataTables_filter">
-              { !excelLoading ?
+              { excelLoading ?
                 <span style={{ display: 'inline-block', verticalAlign: 'text-top', marginRight: 20 }}>
                   <ClipLoader size={22}
                               color={'#39afd1'}
@@ -106,7 +106,7 @@ export default class TransactionTable extends React.Component {
           </div>
           <div className="col-sm-12 col-md-7">
             <div className="dataTables_paginate paging_simple_numbers" id="basic-datatable_paginate">
-              <Paging pageInfo={pageInfo} onChangePage={(page) => {getTrxs({ page })}} />
+              <Paging pageInfo={pageInfo} onChangePage={(page) => {getTrxs({ page }, true)}} />
             </div>
           </div>
         </div>

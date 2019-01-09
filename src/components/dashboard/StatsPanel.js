@@ -4,12 +4,6 @@ import { observer } from 'mobx-react'
 import StatsCard from '../dashboard/StatsCard'
 import './StatsPanel.css'
 
-const graphType = {
-  'graph_amount': {
-    color: '#727cf5'
-  }
-}
-
 @observer
 export default class StatsPanel extends React.Component {
   @observable graphType
@@ -19,8 +13,7 @@ export default class StatsPanel extends React.Component {
 
     this.chart = null
     this.graphType = 'graph_amount'
-  }
-  componentDidMount() {
+
     this.reaction = reaction(
       () => this.graphType,
       (graphType) => {
@@ -49,7 +42,7 @@ export default class StatsPanel extends React.Component {
               <div className="page-title-right">
                 <form className="form-inline">
                   {dateInput}
-                  <a className="btn btn-primary ml-2" onClick={onGetData}>
+                  <a className="btn btn-primary ml-2" onClick={() => onGetData(false)}>
                     <i className="mdi mdi-autorenew" style={{ color: '#fff' }} />
                   </a>
                 </form>
@@ -58,7 +51,7 @@ export default class StatsPanel extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ minHeight: 431 }}>
           <div className="col-xl-5">
             <div className="row">
               <div className="col-lg-6">
@@ -100,9 +93,27 @@ export default class StatsPanel extends React.Component {
     options.series = graph_items.map(({name, values}) => {
       return {
         name,
-        data: values.map(value => [parseInt(value[0]), value[1]])
+        data: values
       }
     })
+
+    if(this.props.title === 'DAILY') {
+      options.tooltip = {
+        x: {
+          show: true,
+          format: 'dd/MM/yyyy HH:mm',
+          formatter: undefined,
+        }
+      }
+    } else {
+      options.tooltip = {
+        x: {
+          show: true,
+          format: 'dd/MM/yyyy',
+          formatter: undefined,
+        }
+      }
+    }
     let chart = new ApexCharts(
       this.chart,
       options
@@ -128,18 +139,18 @@ const options = {
     animations: {
       enabled: true,
       easing: 'easeinout',
-      speed: 400,
+      speed: 800,
       animateGradually: {
         enabled: true,
-        delay: 100
+        delay: 150
       },
       dynamicAnimation: {
         enabled: true,
-        speed: 100
+        speed: 150
       }
     },
   },
-  colors: ['#727cf5', '#0acf97'],
+  colors: ['#9688d8', '#76cb98', '#db657c', '#6e747c', '#6eacce', '#edbc2e'],
   dataLabels: {
     enabled: false
   },
@@ -159,7 +170,10 @@ const options = {
     horizontalAlign: 'left'
   },
   xaxis: {
-    type: 'datetime'
+    type: 'datetime',
+    tooltip: {
+      enabled: false
+    }
   },
   grid: {
     row: {
