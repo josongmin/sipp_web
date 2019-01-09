@@ -73,19 +73,19 @@ export default class TransactionTable extends React.Component {
             <table id="basic-datatable" className="table dt-responsive dataTable nowrap" style={{ width: '100%' }}>
               <thead>
               <tr>
-                <th>번호</th>
-                <th>서비스</th>
-                <th>주문번호</th>
-                <th>주문자</th>
-                <th>리시버</th>
-                <th>핸드폰</th>
-                <th>주문내역</th>
-                <th>은행</th>
-                <th>입금상태</th>
-                <th>VA</th>
-                <th>금액</th>
-                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>생성일시</th>
-                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>입금일시</th>
+                <th>#</th>
+                <th>Service</th>
+                <th>Order no</th>
+                <th>Name</th>
+                <th>Receiver</th>
+                <th>Phone</th>
+                <th>Desc</th>
+                <th>Bank</th>
+                <th>Status</th>
+                <th>VA no</th>
+                <th>Amount</th>
+                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>Date of issue</th>
+                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>Date of deposit</th>
               </tr>
               </thead>
               <tbody>

@@ -51,7 +51,7 @@ export default class StatsPanel extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row" style={{ minHeight: 431 }}>
+        <div className="row" style={{ }}>
           <div className="col-xl-5">
             <div className="row">
               <div className="col-lg-6">
@@ -67,10 +67,10 @@ export default class StatsPanel extends React.Component {
           </div>
           <div className="col-xl-7">
             <div className="card">
-              <div className="card-body">
-                <div className="text-right" style={{}}>
-                  <button type="button" className={`btn btn-${this.graphType === 'graph_amount' ? '' : 'outline-'}info btn-sm mr-1 statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_amount')}>거래금액</button>
-                  <button type="button" className={`btn btn-${this.graphType === 'graph_trx' ? '' : 'outline-'}success btn-sm statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_trx')}>거래건수</button>
+              <div className="card-body" style={{paddingBottom:4}}>
+                <div className="text-right" style={{paddingBottom:10}}>
+                  <button type="button" className={`btn btn-${this.graphType === 'graph_amount' ? '' : 'outline-'}info btn-sm mr-1 statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_amount')}>Amount</button>
+                  <button type="button" className={`btn btn-${this.graphType === 'graph_trx' ? '' : 'outline-'}info btn-sm statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_trx')}>Number</button>
                 </div>
                 <div ref={c => this.chart = c} className="apex-charts" />
               </div>
@@ -150,7 +150,7 @@ const options = {
       }
     },
   },
-  colors: ['#9688d8', '#76cb98', '#db657c', '#6e747c', '#6eacce', '#edbc2e'],
+  colors: ['#9688d8', '#76cb98', '#db657c', '#6eacce', '#edbc2e', '#6e747c'],
   dataLabels: {
     enabled: false
   },

@@ -17,12 +17,12 @@ export default class FilterPanel extends React.Component {
         <div className="col-12">
           <div className="card">
             <div className="card-body">
-              <h4 className="header-title">PERIOD</h4>
+              <h5 >Search transaction history based on,</h5>
               <div className="row">
                 <div className="col-md-4">
                   <Select options={[
-                    {label: '요청일시 조회', value: 'request_dt_range'},
-                    {label: '입금일시 조회', value: 'transfer_dt_range'}
+                    {label: 'Date of request', value: 'request_dt_range'},
+                    {label: 'Date of deposit', value: 'transfer_dt_range'}
                     ]}
                           value={filters.dt_range_type}
                           onChange={(value) => setFilters('dt_range_type', value)}
@@ -59,23 +59,23 @@ export default class FilterPanel extends React.Component {
                 <div className="col-sm-8">
                   <div className="row">
                     <div className="col-sm-3">
-                      <Input label={'고객명'} value={filters.user_name} onChange={(value) => setFilters('user_name', value)} />
+                      <Input label={'User name'} value={filters.user_name} onChange={(value) => setFilters('user_name', value)} />
                     </div>
                     <div className="col-sm-3">
-                      <Input label={'수위인명'} value={filters.receiver_name} onChange={(value) => setFilters('receiver_name', value)} />
+                      <Input label={'Receiver name'} value={filters.receiver_name} onChange={(value) => setFilters('receiver_name', value)} />
                     </div>
                     <div className="col-sm-3">
-                      <Input label={'핸드폰'} value={filters.phone} onChange={(value) => setFilters('phone', value, 'phone')} />
+                      <Input label={'Cellphone'} value={filters.phone} onChange={(value) => setFilters('phone', value, 'phone')} />
                     </div>
                   </div>
                 </div>
                 <div className="col-sm-4">
                   <div className="row">
                     <div className="col-6">
-                      <Input label={'최소 금액'} value={filters.transfer_amount_range_min} onChange={(value) => setFilters('transfer_amount_range_min', value, 'number')} /><span className="row-dash" style={{ top: 36 }}>-</span>
+                      <Input label={'Amount (From)'} value={filters.transfer_amount_range_min} onChange={(value) => setFilters('transfer_amount_range_min', value, 'number')} /><span className="row-dash" style={{ top: 36 }}>-</span>
                     </div>
                     <div className="col-6">
-                      <Input label={'최대 금액'} value={filters.transfer_amount_range_max} onChange={(value) => setFilters('transfer_amount_range_max', value, 'number')} />
+                      <Input label={'Amount (To)'} value={filters.transfer_amount_range_max} onChange={(value) => setFilters('transfer_amount_range_max', value, 'number')} />
                     </div>
                   </div>
                 </div>
@@ -84,9 +84,9 @@ export default class FilterPanel extends React.Component {
                 <div className="col-sm-8">
                   <div className="row">
                     <div className="col-sm-3">
-                      <Select label={'거래은행'}
+                      <Select label={'Bank'}
                               options={[
-                                {label: '전체은행', value: ''},
+                                {label: 'All banks', value: ''},
                                 {label: 'Mandiri', value: 'Mandiri'},
                                 {label: 'BCA', value: 'BCA'},
                                 {label: 'BRI', value: 'BRI'}
@@ -96,9 +96,9 @@ export default class FilterPanel extends React.Component {
                       />
                     </div>
                     <div className="col-sm-3">
-                      <Select label={'상태'}
+                      <Select label={'Status'}
                               options={[
-                                {label: '전체', value: ''},
+                                {label: 'All status', value: ''},
                                 {label: 'Confirmed', value: 'CONFIRMED'},
                                 {label: 'Cancelled', value: 'CANCELLED'},
                                 {label: 'Ready', value: 'READY'}
@@ -112,10 +112,10 @@ export default class FilterPanel extends React.Component {
                 <div className="col-sm-4">
                   <div className="row">
                     <div className="col-6">
-                      <Input label={'VA번호'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
+                      <Input label={'VA number'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
                     </div>
                     <div className="col-6">
-                      <Input label={'주문번호'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
+                      <Input label={'Order number'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
                     </div>
                   </div>
                 </div>

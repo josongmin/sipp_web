@@ -18,14 +18,14 @@ export default class TransactionPage extends React.Component {
     const { filters, setFilters, loading } = this.props.transactionStore
     return (
       <BasicLayout {...this.props}>
-        <div className="row">
+        <div className="row" style={{marginTop:5}}>
           <div className="col-12">
             <div className="page-title-box">
               <div className="page-title-right">
-                <form className="form-inline">
+                <form className="form-inline" style={{marginTop:10,marginBottom:-5}}>
                   <Select options={
                     [
-                      {label: '전체서비스', value: ''},
+                      {label: 'All services', value: ''},
                       {label: 'Shopee EC', value: 'SHOPEE_EC'},
                       {label: 'Shopee pay', value: 'SHOPEE_PAY'},
                       {label: 'Shopee Kredit', value: 'SHOPEE_KREDIT'},
@@ -35,7 +35,8 @@ export default class TransactionPage extends React.Component {
                   />
                 </form>
               </div>
-              <h4 className="page-title">TRANSACTIONS</h4>
+              {/* <h3 style={{ marginTop: 30 }}>Transaction history</h3> */}
+              <h4 className="page-title" style={{marginTop:10}}>Transaction history</h4>
             </div>
           </div>
         </div>

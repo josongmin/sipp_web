@@ -16,7 +16,7 @@ export default class HorizontalNav extends React.Component {
 
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
                 
-                <img src="https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png" alt="Google" height="44" width="120" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
+                <img src="https://coderthemes.com/hyper/assets/images/logo-dark.png" alt="Google" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
             <a className="navbar-toggle" data-toggle="collapse" data-target="#topnav-menu-content">
@@ -60,18 +60,18 @@ export default class HorizontalNav extends React.Component {
                   <li className="nav-item">
                     <Link to="/" className={`nav-link ${match.path === '/' ? 'active' : ''}`}>
                       <i className="mdi mdi-speedometer mr-1"/>
-                      <span> DASHBOARD </span>
+                      <span> Dashboard </span>
                     </Link>
                   </li>
 
                   <li className="nav-item">
                     <Link to={'/transaction'} className={`nav-link ${match.path === '/transaction' ? 'active' : ''}`}>
                       <i className="mdi mdi-google-pages mr-1"/>
-                      <span> TRANSACTIONS </span>
+                      <span> Transactions </span>
                     </Link>
                   </li>
 
-                  <li className="nav-item">
+                  <li className="nav-item" style={{visibility:'hidden'}}>
                     <Link to={'/notice'} className={`nav-link ${match.path === '/notice' ? 'active' : ''}`}>
                       <i className="mdi mdi-briefcase-outline mr-1"/>
                       <span> NOTICE </span>

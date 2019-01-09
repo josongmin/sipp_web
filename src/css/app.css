@@ -7799,14 +7799,14 @@ body.boxed-layout {
 .page-title-box .page-title {
   font-size: 18px;
   margin: 0;
-  line-height: 85px;
+  line-height: 60px;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
 
 .page-title-box .page-title-right {
-  float: right;
-  margin-top: 25px; }
+  float: right; }
 
 .page-title-box .breadcrumb {
   padding-top: 8px; }

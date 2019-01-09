@@ -16,8 +16,8 @@ export default class DashboardPage extends React.Component {
     const { dailyStats, monthStats, yearStats, dayGraphs, monthGraphs, yearGraphs, getDayGraph, getMonthGraph, getYearGraph, day, month, year, setDate, loading } = this.props.dashboardStore
     return (
       <BasicLayout {...this.props}>
-        <h3 style={{ marginTop: 30 }}>DASHBOARD</h3>
-        <StatsPanel title={'DAILY'}
+        <h3 style={{ marginTop: 30 }}>Statistics</h3>
+        <StatsPanel title={'Hourly'}
                     stats={dailyStats}
                     graphs={dayGraphs}
                     onGetData={getDayGraph}
@@ -27,7 +27,7 @@ export default class DashboardPage extends React.Component {
                       </div>
                     }
         />
-        <StatsPanel title={'MONTHLY'}
+        <StatsPanel title={'Daily'}
                     stats={monthStats}
                     graphs={monthGraphs}
                     onGetData={getMonthGraph}
