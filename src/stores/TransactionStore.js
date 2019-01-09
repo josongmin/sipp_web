@@ -112,10 +112,14 @@ export default class TransactionStore {
 
   @action.bound
   async getTrx(sipp_order_id) {
+    if(this.loading) return false
+    this.transaction = null
+    this.loading = true
     return axiosQueryApi('/trxs/' + sipp_order_id, 'get')
       .then(res => {
         this.transaction = res.data.order
       })
+      .finally(() => this.loading = false)
   }
 
   @action.bound
