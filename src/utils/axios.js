@@ -36,7 +36,6 @@ export function axiosApi(url, method = "get", data, options = {}) {
     })
     .catch((error) => {
       if (error.response) {
-        const { data } = error.response
 
       } else if (error.request) {
         console.log(error.request)
@@ -75,8 +74,10 @@ export function axiosQueryApi(url, method = "get", data, options = {}) {
     })
     .catch((error) => {
       if(error.response) {
-        const { data } = error.response;
-        if (data.message) {
+        const { data } = error.response
+        if (data) {
+          const { status } = data
+          stores.modalStore.showModal('LoginAlert', { msg: status.msg, style: { width: 280, margin: '0 auto' }})
         }
       } else if (error.request) {
         console.log(error.request)

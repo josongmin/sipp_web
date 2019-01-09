@@ -139,7 +139,7 @@ const options = {
       }
     },
   },
-  colors: ['#727cf5', '#0acf97'],
+  colors: ['#9688d8', '#76cb98', '#db657c', '#6e747c', '#6eacce', '#edbc2e'],
   dataLabels: {
     enabled: false
   },

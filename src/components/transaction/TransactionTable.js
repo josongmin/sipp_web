@@ -42,18 +42,18 @@ export default class TransactionTable extends React.Component {
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                  <option value="100">200</option>
-                  <option value="100">300</option>
-                  <option value="100">400</option>
-                  <option value="100">500</option>
-                  <option value="100">1000</option>
+                  <option value="200">200</option>
+                  <option value="300">300</option>
+                  <option value="400">400</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
                 </select> products
               </label>
             </div>
           </div>
           <div className="col-sm-12 col-md-6">
             <div id="basic-datatable_filter" className="dataTables_filter">
-              { !excelLoading ?
+              { excelLoading ?
                 <span style={{ display: 'inline-block', verticalAlign: 'text-top', marginRight: 20 }}>
                   <ClipLoader size={22}
                               color={'#39afd1'}

@@ -69,7 +69,6 @@ export default class LoginPage extends React.Component {
                   <div className="col-12 text-center">
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
