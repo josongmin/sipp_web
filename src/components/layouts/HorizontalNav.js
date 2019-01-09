@@ -10,7 +10,7 @@ export default class HorizontalNav extends React.Component {
       <Fragment>
         <div className="navbar-custom topnav-navbar">
           <div className="container-fluid">
-            <Link to={'/'} className="logo">
+            <Link to={'/'} className="logo">  
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
                 SHOPEE
               </h1>
@@ -29,7 +29,7 @@ export default class HorizontalNav extends React.Component {
             <nav className="navbar navbar-dark navbar-expand-lg topnav-menu">
 
               <div className="collapse navbar-collapse" id="topnav-menu-content">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav"> 
                   <li className="nav-item">
                     <Link to="/" className={`nav-link ${match.path === '/' ? 'active' : ''}`}>
                       <i className="mdi mdi-speedometer mr-1"/>
@@ -40,14 +40,14 @@ export default class HorizontalNav extends React.Component {
                   <li className="nav-item">
                     <Link to={'/transaction'} className={`nav-link ${match.path === '/transaction' ? 'active' : ''}`}>
                       <i className="mdi mdi-google-pages mr-1"/>
-                      <span> 거래조회 </span>
+                      <span> TRANSACTIONS </span>
                     </Link>
                   </li>
 
                   <li className="nav-item">
                     <Link to={'/notice'} className={`nav-link ${match.path === '/notice' ? 'active' : ''}`}>
                       <i className="mdi mdi-briefcase-outline mr-1"/>
-                      <span> 공지사항 </span>
+                      <span> NOTICE </span>
                     </Link>
                   </li>
                 </ul>

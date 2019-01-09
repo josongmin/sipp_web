@@ -17,7 +17,7 @@ export default class FilterPanel extends React.Component {
         <div className="col-12">
           <div className="card">
             <div className="card-body">
-              <h4 className="header-title">기간조회</h4>
+              <h4 className="header-title">PERIOD</h4>
               <div className="row">
                 <div className="col-md-4">
                   <Select options={[
@@ -34,7 +34,7 @@ export default class FilterPanel extends React.Component {
                 <div className="col-xl-9">
                   <div className="row">
                     <div className="col-sm-3">
-                      <DateRangePicker value={filters.start_date.format('DD/MM/YYYY')} onChange={(value) => setFilters('start_date', value)} />
+                      <DateRangePicker value={filters.start_date.format('DD/MM/YYYY')} onChange={(value) => setFilters('start_date', value)}/>
                     </div>
                     <div className="col-sm-3">
                       <TimePicker value={filters.start_date.format('h:mm A')} onChange={(time) => setFilters('start_date', filters.start_date.set({ hour: time.hour + (time.meridian === 'PM' ? 12 : 0), minute: time.minute }))} setRef={setRef.bind(this, 'start_time_ref')} /><span className="row-dash">-</span>

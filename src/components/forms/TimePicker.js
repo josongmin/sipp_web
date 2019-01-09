@@ -22,7 +22,7 @@ export default class TimePicker extends React.Component {
     return (
       <div className="form-group mb-3">
         {label && <label>{label}</label>}
-        <div className="input-group">
+        <div className="input-group" >
           <input ref={el => this.el = el} type="text" className="form-control" data-toggle='timepicker' value={value}
                  onChange={() => {}} />
             <div className="input-group-append">
