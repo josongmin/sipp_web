@@ -9564,7 +9564,7 @@ jQuery.ajaxTransport( function( options ) {
 				};
 
 				// Listen to events
-				xhr.onload = callback();
+				xhr.onLoad = callback();
 				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
 
 				// Support: IE 9 only

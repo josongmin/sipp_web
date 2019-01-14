@@ -11,14 +11,14 @@ export default class HorizontalNav extends React.Component {
     const { match, userStore: { currentUser, isAuthenticated, logout } } = this.props
     return (
       <Fragment>
-        <div className="navbar-custom topnav-navbar">
+        <div className="navbar-custom topnav-navbar ">
           <div className="container-fluid">
 
             <Link to={'/'} className="logo" style={{ display: 'inline-block' }}>
 
               <h1 className="logo-lg" style={{ margin: 0, paddingTop: 15 }}>
 
-                <img src={logoImg} alt="Shopee" height="18" onload="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
+                <img src={logoImg} alt="Shopee" height="22" onLoad="typeof google==='object'&amp;&amp;google.aft&amp;&amp;google.aft(this)"></img>
               </h1>
             </Link>
             <a className="navbar-toggle" data-toggle="collapse" data-target="#topnav-menu-content">
@@ -31,14 +31,14 @@ export default class HorizontalNav extends React.Component {
             {
               isAuthenticated &&
               <ul className="list-unstyled topbar-right-menu float-right mb-0">
-                <li className="dropdown notification-list" style={{ minWidth: 179 }}>
+                <li className="dropdown notification-list" style={{}}>
                   <a className="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#"
                      role="button" aria-haspopup="false" aria-expanded="false">
                     <span className="account-user-avatar">
                       <img src={currentUser.photo_url} alt="user-image" className="rounded-circle" />
                     </span>
                     <span>
-                      <span className="account-user-name">{currentUser.name}</span>
+                      <span className="account-user-name text-primary">{currentUser.name}</span>
                       <span className="account-position">{currentUser.position}</span>
                     </span>
                   </a>
@@ -53,30 +53,52 @@ export default class HorizontalNav extends React.Component {
             }
           </div>
         </div>
-        <div className="topnav" >
-          <div className="container-fluid" >
+        <div className="topnav">
+          <div className="container-fluid " >
             <nav className="navbar navbar-dark navbar-expand-lg topnav-menu">
 
               <div className="collapse navbar-collapse" id="topnav-menu-content">
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     <Link to="/" className={`nav-link ${match.path === '/' ? 'active' : ''}`}>
-                      <i className="mdi mdi-speedometer mr-1"/>
+                      <i className="mdi mdi mdi-signal-cellular-3 mr-1"/>
                       <span> Dashboard </span>
                     </Link>
                   </li>
 
                   <li className="nav-item">
                     <Link to={'/transaction'} className={`nav-link ${match.path === '/transaction' ? 'active' : ''}`}>
-                      <i className="mdi mdi-google-pages mr-1"/>
-                      <span> Transactions </span>
+                      <i className="mdi mdi-presentation-play mr-1"/>
+                      <span> Transaction history </span>
                     </Link>
                   </li>
 
-                  <li className="nav-item" style={{visibility:'hidden'}}>
-                    <Link to={'/notice'} className={`nav-link ${match.path === '/notice' ? 'active' : ''}`}>
-                      <i className="mdi mdi-briefcase-outline mr-1"/>
-                      <span> NOTICE </span>
+                  <li className="nav-item" >
+                    <Link to={'/schedule'} className={`nav-link ${match.path === '/schedule' ? 'active' : ''}`}>
+                      <i className="mdi mdi mdi-calendar-check mr-1"/>
+                      <span> Schedule </span>
+                    </Link>
+                  </li>
+
+
+                  <li className="nav-item" >
+                    <Link to={'/members'} className={`nav-link ${match.path === '/members' ? 'active' : ''}`}>
+                      <i className="mdi mdi-account-settings mr-1"/>
+                      <span> Members </span>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item" >
+                    <Link to={'/help'} className={`nav-link ${match.path === '/help' ? 'active' : ''}`}>
+                      <i className="mdi mdi-compass-outline mr-1"/>
+                      <span> Help </span>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item" >
+                    <Link to={'/developer'} className={`nav-link ${match.path === '/developer' ? 'active' : ''}`}>
+                      <i className="mdi  mdi mdi-transition mr-1"/>
+                      <span> Developer </span>
                     </Link>
                   </li>
                 </ul>

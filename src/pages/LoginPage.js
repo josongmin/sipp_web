@@ -23,19 +23,19 @@ export default class LoginPage extends React.Component {
     return (
       <div className="authentication-bg" style={{ minHeight: '100%' }}>
         <div className="account-pages mt-5 mb-5">
-          <div className="container">
+          <div className="container" >
             <div className="row justify-content-center">
-              <div className="col-lg-5">
-                <div className="card">
-                  <div className="card-header pt-4 pb-4 text-center bg-primary">
-                    <h2 style={{ color: '#fff' }}>SHOPEE</h2>
+              <div className="col-lg-5" >
+                <div className="card" style={{marginTop:20}}>
+                  <div className="card-header pt-2 pb-2 text-center bg-primary">
+                    <h3 style={{ color: '#fff' }}>Sign in</h3>
                   </div>
                   <div className="card-body p-4">
                     <div className="text-center w-75 m-auto">
-                      <h4 className="text-dark-50 text-center mt-0 font-weight-bold">Sign In</h4>
-                      <p className="text-muted mb-4">Enter your ID and password to access admin panel.</p>
+                      <h4 className="text-dark-50 text-center mt-0 font-weight-bold">Hello Sailor!</h4>
+                      <p className="text-muted mb-4">Enter your ID and password to access SIPP admin panel</p>
                     </div>
-                    <form onSubmit={this.login}>
+                    <form onSubmit={this.login} style={{marginTop:-10}}>
                       <div className="form-group">
                         <label htmlFor="emailaddress">ID</label>
                         <input className="form-control"
@@ -55,20 +55,14 @@ export default class LoginPage extends React.Component {
                                id="password"
                                placeholder="Enter your password" />
                       </div>
-                      <div className="form-group mb-3">
-                        <div className="custom-control custom-checkbox">
-                        </div>
-                      </div>
-                      <div className="form-group mb-0 text-center">
-                        <button className="btn btn-primary" type="submit"> Log In</button>
+                      
+                      <div className="form-group mb-0 text-center" style={{marginTop:40}}>
+                        <button className="mdi mdi-account-check btn btn-primary btn-rounded" type="submit" style={{paddingLeft:23, paddingRight:23, paddingBottom:12, paddingTop:12}}>&nbsp;&nbsp;Log In&nbsp;</button>
                       </div>
                     </form>
                   </div>
                 </div>
-                <div className="row mt-3">
-                  <div className="col-12 text-center">
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

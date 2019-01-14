@@ -17,45 +17,51 @@ export default class FilterPanel extends React.Component {
         <div className="col-12">
           <div className="card">
             <div className="card-body">
-              <h5 >Search transaction history based on,</h5>
+              <label>Date</label>
               <div className="row">
-                <div className="col-md-4">
+                <div className="col-sm-2">
                   <Select options={[
-                    {label: 'Date of request', value: 'request_dt_range'},
-                    {label: 'Date of deposit', value: 'transfer_dt_range'}
+                    {label: 'Payment date', value: 'transfer_dt_range'},
+                    {label: 'Order date', value: 'request_dt_range'}
+                    
                     ]}
                           value={filters.dt_range_type}
                           onChange={(value) => setFilters('dt_range_type', value)}
                           style={{ maxWidth: 200 }}
                   />
                 </div>
-              </div>
-              <div className="row no-gutters">
-                <div className="col-xl-9">
+                <div className="col-sm-8">
                   <div className="row">
                     <div className="col-sm-3">
-                      <DateRangePicker value={filters.start_date.format('DD/MM/YYYY')} onChange={(value) => setFilters('start_date', value)}/>
+                      <DateRangePicker value={filters.start_date.format('DD MMM YYYY')} onChange={(value) => setFilters('start_date', value)}/>
                     </div>
                     <div className="col-sm-3">
-                      <TimePicker value={filters.start_date.format('h:mm A')} onChange={(time) => setFilters('start_date', filters.start_date.set({ hour: time.hour + (time.meridian === 'PM' ? 12 : 0), minute: time.minute }))} setRef={setRef.bind(this, 'start_time_ref')} /><span className="row-dash">-</span>
+                      <TimePicker value={filters.start_date.format('h:mm A')} onChange={(time) => setFilters('start_date', filters.start_date.set({ hour: time.hour + (time.meridian === 'PM' ? 12 : 0), minute: time.minute }))} setRef={setRef.bind(this, 'start_time_ref')} />
+                      <span className="row-dash">-</span>
                     </div>
                     <div className="col-sm-3">
-                      <DateRangePicker value={filters.end_date.format('DD/MM/YYYY')} onChange={(value) => setFilters('end_date', value)}/>
+                      <DateRangePicker value={filters.end_date.format('DD MMM YYYY')} onChange={(value) => setFilters('end_date', value)}/>
                     </div>
                     <div className="col-sm-3">
                       <TimePicker value={filters.end_date.format('h:mm A')} onChange={(time) => setFilters('end_date', filters.end_date.set({ hour: time.hour + (time.meridian === 'PM' ? 12 : 0), minute: time.minute }))} setRef={setRef.bind(this, 'end_time_ref')}/>
                     </div>
+                    
                   </div>
                 </div>
-                <div className="col-xl-3 buttons">
-                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }} onClick={() => setDate('1D')}>1D</button>
-                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }} onClick={() => setDate('3D')}>3D</button>
-                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }} onClick={() => setDate('1W')}>1W</button>
-                  <button type="button" className="btn btn-info" style={{ marginRight: 2 }} onClick={() => setDate('1M')}>1M</button>
+                <div className="col-sm-2 pull-right" style={{}}>
+                      
+                      <button type="button" className="btn btn-outline-primary btn-rounded " style={{ marginRight: 7 }} onClick={() => setDate('1D')}><small>1D</small></button>
+                      
+                      <button type="button" className="btn btn-outline-primary btn-rounded " style={{ marginRight: 7 }} onClick={() => setDate('1W')}><small>7D</small></button>
+                      <button type="button" className="btn btn-outline-primary btn-rounded " style={{ marginRight: 0 }} onClick={() => setDate('1M')}><small>1M</small></button>
                 </div>
+                <div className="row no-gutters">
+                
+                </div>
+                
               </div>
 
-              <div className="row">
+              <div className="row"  style={{marginBottom:-10}}>
                 <div className="col-sm-8">
                   <div className="row">
                     <div className="col-sm-3">
@@ -65,7 +71,7 @@ export default class FilterPanel extends React.Component {
                       <Input label={'Receiver name'} value={filters.receiver_name} onChange={(value) => setFilters('receiver_name', value)} />
                     </div>
                     <div className="col-sm-3">
-                      <Input label={'Cellphone'} value={filters.phone} onChange={(value) => setFilters('phone', value, 'phone')} />
+                      <Input label={'Phone'} value={filters.phone} onChange={(value) => setFilters('phone', value, 'phone')} />
                     </div>
                   </div>
                 </div>
@@ -80,16 +86,17 @@ export default class FilterPanel extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="row" style={{marginBottom:-18}}>
                 <div className="col-sm-8">
                   <div className="row">
                     <div className="col-sm-3">
                       <Select label={'Bank'}
                               options={[
                                 {label: 'All banks', value: ''},
-                                {label: 'Mandiri', value: 'Mandiri'},
                                 {label: 'BCA', value: 'BCA'},
-                                {label: 'BRI', value: 'BRI'}
+                                {label: 'BRI', value: 'BRI'},
+                                {label: 'Mandiri', value: 'MANDIRI'},
+                                {label: 'BNI', value: 'BNI'}
                                 ]}
                               value={filters.bank}
                               onChange={(value) => setFilters('bank', value)}
@@ -99,9 +106,11 @@ export default class FilterPanel extends React.Component {
                       <Select label={'Status'}
                               options={[
                                 {label: 'All status', value: ''},
-                                {label: 'Confirmed', value: 'CONFIRMED'},
+                                {label: 'Ready', value: 'READY'},
+                                {label: 'Paid', value: 'PAID'},
+                                {label: 'Settled', value: 'SETTLED'},
                                 {label: 'Cancelled', value: 'CANCELLED'},
-                                {label: 'Ready', value: 'READY'}
+                                {label: 'Refunded', value: 'REFUNDED'}
                                 ]}
                               value={filters.status}
                               onChange={(value) => setFilters('status', value)}
@@ -112,10 +121,10 @@ export default class FilterPanel extends React.Component {
                 <div className="col-sm-4">
                   <div className="row">
                     <div className="col-6">
-                      <Input label={'VA number'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
+                      <Input label={'VA No'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
                     </div>
                     <div className="col-6">
-                      <Input label={'Order number'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
+                      <Input label={'Order No'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
                     </div>
                   </div>
                 </div>

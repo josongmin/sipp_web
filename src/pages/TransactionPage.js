@@ -26,9 +26,9 @@ export default class TransactionPage extends React.Component {
                   <Select options={
                     [
                       {label: 'All services', value: ''},
-                      {label: 'Shopee EC', value: 'SHOPEE_EC'},
-                      {label: 'Shopee pay', value: 'SHOPEE_PAY'},
-                      {label: 'Shopee Kredit', value: 'SHOPEE_KREDIT'},
+                      {label: 'Shopee', value: 'SHOPEE_EC'},
+                      {label: 'ShopeePay', value: 'SHOPEE_PAY'},
+                      {label: 'ShopeeKredit', value: 'SHOPEE_KREDIT'},
                     ]}
                           value={filters.service_type}
                           onChange={(value) => setFilters('service_type', value)}

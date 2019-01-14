@@ -5,7 +5,7 @@ import StatsCard from '../components/dashboard/StatsCard'
 import DateRangePicker from '../components/forms/DateRangePicker'
 import maintenanceImg from '../images/maintenance.svg'
 @observer
-export default class NoticePage extends React.Component {
+export default class MemberPage extends React.Component {
   render() {
     return (
       <BasicLayout {...this.props}>

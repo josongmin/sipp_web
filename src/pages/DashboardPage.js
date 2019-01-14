@@ -9,6 +9,8 @@ import Select from '../components/forms/Select'
 @inject('dashboardStore')
 @observer
 export default class DashboardPage extends React.Component {
+  
+  
   async componentDidMount() {
     this.props.dashboardStore.getAllGraph()
   }
@@ -16,18 +18,19 @@ export default class DashboardPage extends React.Component {
     const { dailyStats, monthStats, yearStats, dayGraphs, monthGraphs, yearGraphs, getDayGraph, getMonthGraph, getYearGraph, day, month, year, setDate, loading } = this.props.dashboardStore
     return (
       <BasicLayout {...this.props}>
-        <h3 style={{ marginTop: 30 }}>Statistics</h3>
-        <StatsPanel title={'Hourly'}
+        <h3 style={{ marginTop: 30, marginBottom:15 }}>Statistics</h3>
+        <StatsPanel title={'Hourly statistics'}
+                    type={'Hourly'}
                     stats={dailyStats}
                     graphs={dayGraphs}
                     onGetData={getDayGraph}
                     dateInput={
                       <div className="form-group">
-                        <DateRangePicker nomb onChange={(value) => {setDate('day', value)}} value={day.format('DD/MM/YYYY')} />
+                        <DateRangePicker nomb onChange={(value) => {setDate('day', value)}} value={day.format('DD MMM YYYY')} />
                       </div>
                     }
         />
-        <StatsPanel title={'Daily'}
+        <StatsPanel title={'Daily statistics'}
                     stats={monthStats}
                     graphs={monthGraphs}
                     onGetData={getMonthGraph}
@@ -37,7 +40,7 @@ export default class DashboardPage extends React.Component {
                       </div>
                     }
         />
-        <StatsPanel title={'Monthly'}
+        <StatsPanel title={'Monthly statistics'}
                     stats={yearStats}
                     graphs={yearGraphs}
                     onGetData={getYearGraph}
@@ -53,6 +56,7 @@ export default class DashboardPage extends React.Component {
                       />
                     }
         />
+        <div style={{height:40}}></div>
         <Loading loading={loading} />
       </BasicLayout>
     )

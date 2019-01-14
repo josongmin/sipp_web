@@ -33,7 +33,7 @@ export default class TransactionTable extends React.Component {
     return (
       <div className="dataTables_wrapper dt-bootstrap4 no-footer">
         <div className="row">
-          <div className="col-sm-12 col-md-6">
+          <div className="col-sm-12 col-md-6" style={{marginTop:3}}>
             <div className="dataTables_length">
               <label>Display
                 <select value={this.pageSize} onChange={(e) => this.pageSize = e.target.value} name="basic-datatable_length" aria-controls="basic-datatable" className="custom-select custom-select-sm form-control form-control-sm ml-1">
@@ -47,11 +47,11 @@ export default class TransactionTable extends React.Component {
                   <option value="400">400</option>
                   <option value="500">500</option>
                   <option value="1000">1000</option>
-                </select> products
+                </select> &nbsp;Products
               </label>
             </div>
           </div>
-          <div className="col-sm-12 col-md-6">
+          <div className="col-sm-12 col-md-6" style={{marginBottom:5}}>
             <div id="basic-datatable_filter" className="dataTables_filter">
               { excelLoading ?
                 <span style={{ display: 'inline-block', verticalAlign: 'text-top', marginRight: 20 }}>
@@ -60,38 +60,39 @@ export default class TransactionTable extends React.Component {
                               sizeUnit={"px"}
                               loading={true} />
                 </span> :
-                <button type="button" className="btn btn-success" onClick={excelDownload}>
-                  EXCEL
+                <button type="button" className="mdi mdi-poll btn btn-success btn-rounded" onClick={excelDownload} style={{marginRight:3}}>
+                  &nbsp;Excel
                 </button>
               }
-              <button type="button" className="btn btn-danger" onClick={() => getTrxs({ size: this.pageSize })} style={{ marginLeft: 5 }}>SEARCH</button>
+              <button type="button" className="mdi mdi-magnify btn btn-primary btn-rounded " onClick={() => getTrxs({ size: this.pageSize })} style={{ marginLeft: 5 }}>&nbsp;Search</button>
             </div>
           </div>
         </div>
         <div className="row" style={{ overflowX: 'auto' }}>
           <div className="col-sm-12">
-            <table id="basic-datatable" className="table dt-responsive dataTable nowrap" style={{ width: '100%' }}>
+            <table id="basic-datatable" className="table dt-responsive dataTable nowrap " style={{ width: '100%' }}>
               <thead>
               <tr>
                 <th>#</th>
+                <th>Order No</th>
                 <th>Service</th>
-                <th>Order no</th>
-                <th>Name</th>
+                <th>VA No</th>
+                <th>Amount</th>
+                <th>User</th>
                 <th>Receiver</th>
                 <th>Phone</th>
-                <th>Desc</th>
+                {/* <th>Description</th> */}
                 <th>Bank</th>
                 <th>Status</th>
-                <th>VA no</th>
-                <th>Amount</th>
-                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>Date of issue</th>
-                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>Date of deposit</th>
+                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>Order date</th>
+                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>Payment date</th>
+                
               </tr>
               </thead>
               <tbody>
               {
                 data.map(datum => (
-                  <TR {...datum} key={datum.no} onClick={() => this.props.modalStore.showModal('TransactionDetail', { title: 'SHOPEE_PAY #' + datum.sipp_order_id, ...datum })} />
+                  <TR {...datum} key={datum.no} onClick={() => this.props.modalStore.showModal('TransactionDetail', { title: datum.title, ...datum })} />
                 ))
               }
               </tbody>
@@ -120,22 +121,52 @@ export default class TransactionTable extends React.Component {
 }
 
 const TR = (props) => {
+  
   const { no, service_name, service_order_id, user_name_1, user_name_2, hp, desc, bank, status, va_no, amount, req_dt, trx_dt } = props
+  
+  let statusBadge = '', serviceBadge = '';
+  if(status === 'CANCELLED'){
+    statusBadge = 'badge-danger-lighten';
+  }
+  else if(status === 'PAID'){
+    statusBadge = 'badge-info-lighten';
+  }
+  else if(status === 'SETTELED'){
+    statusBadge = 'badge-primary-lighten';
+  }
+  else if(status === 'READY'){
+    statusBadge = 'badge-success-lighten';
+  }
+  else if(status == 'REFUNDED'){
+    statusBadge = 'badge-secondary-lighten';
+  }
+  
+  
+  if(service_name === 'PAY'){
+    serviceBadge = 'text-success';
+  }else if(service_name === 'KREDIT'){
+    serviceBadge = 'text-dark';
+  }else if(service_name === 'SHOPEE'){
+    serviceBadge = 'text-danger';
+  }
+
   return (
     <tr role="row" className="odd">
       <td>{no}</td>
-      <td>{service_name}</td>
-      <td onClick={props.onClick} style={{ cursor: 'pointer', color: '#727cf5' }}>{service_order_id}</td>
+      
+      <td onClick={props.onClick} style={{ cursor: 'pointer', color: '#727cf5' }}><span className="">{service_order_id}</span></td>
+      <td><span className={`badge `+ serviceBadge}>{service_name}</span></td>
+      <td>{va_no}</td>
+      <td>{numberWithCommas(amount)}</td>
       <td>{user_name_1}</td>
       <td>{user_name_2}</td>
       <td>{hp}</td>
-      <td>{desc}</td>
-      <td>{bank}</td>
-      <td>{status}</td>
-      <td>{va_no}</td>
-      <td>{numberWithCommas(amount)}</td>
-      <td>{req_dt}</td>
+      {/* <td>{desc}</td> */}
+      <td><span className="badge">{bank}</span></td>
+      <td><span className={`badge ` + statusBadge }>{status}</span></td>
       <td>{trx_dt}</td>
+      <td>{req_dt}</td>
+      
     </tr>
   )
 }

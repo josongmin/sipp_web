@@ -12,7 +12,7 @@ export default class StatsPanel extends React.Component {
     super(props)
 
     this.chart = null
-    this.graphType = 'graph_amount'
+    this.graphType = 'graph_trx'
 
     this.reaction = reaction(
       () => this.graphType,
@@ -35,43 +35,49 @@ export default class StatsPanel extends React.Component {
   render() {
     const { stats = [], title, onGetData, dateInput } = this.props
     return (
-      <div>
+      <div  style={{marginTop:10}}>
         <div className="row">
           <div className="col-12">
             <div className="page-title-box">
-              <div className="page-title-right">
+              <div className="page-title-right" style={{marginTop:8}}>
+              
                 <form className="form-inline">
+                  <div className="text-right" style={{marginLeft:10, marginRight:10}}> 
+                    <button type="button" className={`${this.graphType === 'graph_amount' ? 'mdi mdi-check-all ' : ''} btn btn-${this.graphType === 'graph_amount' ? '' : 'outline-'}primary btn-rounded mr-1 statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_amount')}>&nbsp;Revenue&nbsp;</button>
+                    <button type="button" className={`${this.graphType === 'graph_trx' ? 'mdi mdi-check-all ' : ''} btn btn-${this.graphType === 'graph_trx' ? '' : 'outline-'}primary btn-rounded statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_trx')}>&nbsp;Transaction&nbsp;</button>
+                  </div>
                   {dateInput}
                   <a className="btn btn-primary ml-2" onClick={() => onGetData(false)}>
                     <i className="mdi mdi-autorenew" style={{ color: '#fff' }} />
                   </a>
+
                 </form>
+                
               </div>
               <h4 className="page-title">{title}</h4>
             </div>
           </div>
         </div>
         <div className="row" style={{ }}>
-          <div className="col-xl-5">
+          <div className="col-xl-3">
             <div className="row">
-              <div className="col-lg-6">
+              {/* <div className="col-lg-6">
                 <StatsCard {...stats[0]} icon={'desktop-classic'} />
-              </div>
-              <div className="col-lg-6">
+              </div> */}
+              <div className="col-lg-12">
                 <StatsCard {...stats[1]} icon={'cart-plus'} />
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-12">
                 <StatsCard {...stats[2]} icon={'currency-usd'} />
               </div>
             </div>
           </div>
-          <div className="col-xl-7">
+          <div className="col-xl-9">
+          
             <div className="card">
-              <div className="card-body" style={{paddingBottom:4}}>
-                <div className="text-right" style={{paddingBottom:10}}>
-                  <button type="button" className={`btn btn-${this.graphType === 'graph_amount' ? '' : 'outline-'}info btn-sm mr-1 statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_amount')}>Amount</button>
-                  <button type="button" className={`btn btn-${this.graphType === 'graph_trx' ? '' : 'outline-'}info btn-sm statsBtn`} onClick={this.handleClickButton.bind(this, 'graph_trx')}>Number</button>
-                </div>
+            
+              <div className="card-body" style={{marginBottom:-20, minHeight:235}}>
+                
                 <div ref={c => this.chart = c} className="apex-charts" />
               </div>
             </div>
@@ -97,11 +103,11 @@ export default class StatsPanel extends React.Component {
       }
     })
 
-    if(this.props.title === 'Hourly') {
+    if(this.props.type === 'Hourly') {
       options.tooltip = {
         x: {
           show: true,
-          format: 'dd/MM/yyyy HH:mm',
+          format: 'HH:mm, dd MMM yy',
           formatter: undefined,
         }
       }
@@ -109,7 +115,7 @@ export default class StatsPanel extends React.Component {
       options.tooltip = {
         x: {
           show: true,
-          format: 'dd/MM/yyyy',
+          format: 'dd MMM yy',
           formatter: undefined,
         }
       }
@@ -125,11 +131,19 @@ export default class StatsPanel extends React.Component {
 
 const options = {
   chart: {
-    height: 321,
+    toolbar:{
+      show: true,
+      tools: {
+        selection: false,
+        pan: false
+      }
+    },
+
+    height: 320,
     type: 'area',
     stacked: true,
     scroller: {
-      enabled: true
+      enabled: false
     },
     events: {
       selection: (chart, e) => {
@@ -150,7 +164,10 @@ const options = {
       }
     },
   },
-  colors: ['#9688d8', '#76cb98', '#db657c', '#6eacce', '#edbc2e', '#6e747c'],
+  // markers: {
+  //   size: 0
+  // },
+  colors: ['#9688d8', '#76cb98', '#85e3be', '#b978eb', '#e3c785', '#ec74e8'],
   dataLabels: {
     enabled: false
   },
@@ -161,13 +178,28 @@ const options = {
   fill: {
     gradient: {
       enabled: true,
-      opacityFrom: 0.6,
-      opacityTo: 0.8,
+      opacityFrom: 0.4,
+      opacityTo: 0.6,
     }
   },
   legend: {
+    fontSize: 10,
+    offsetX: -15,
     position: 'top',
-    horizontalAlign: 'left'
+    horizontalAlign: 'left',
+    itemMargin:{
+      horizontal:25,
+      vertical:0
+    }
+  },
+  yaxis:{
+    labels: {
+      formatter: function (value) {
+        var regexp = /\B(?=(\d{3})+(?!\d))/g;
+        return value.toString().replace(regexp, ',');
+        //return value + "$";
+      }
+    },
   },
   xaxis: {
     type: 'datetime',
@@ -178,9 +210,9 @@ const options = {
   grid: {
     row: {
       colors: ['transparent', 'transparent'], // takes an array which will be repeated on columns
-      opacity: 0.2
+      opacity: 0.1
     },
-    borderColor: '#f1f3fa'
+    borderColor: '#f8f9fd'
   },
   responsive: [{
     breakpoint: 600,

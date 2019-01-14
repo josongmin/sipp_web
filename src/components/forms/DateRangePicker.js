@@ -9,7 +9,7 @@ export default class DateRangePicker extends React.Component {
     this.$el.daterangepicker({
       singleDatePicker: true,
       locale: {
-        format: 'DD/MM/YYYY'
+        format: 'DD MMM YYYY'
       }
     }, (start) => {
       this.props.onChange(start)
@@ -26,7 +26,7 @@ export default class DateRangePicker extends React.Component {
       <div className={cls} style={style}>
         <input ref={el => this.el = el} type="text" className="form-control form-control-light" value={value} onChange={() => {}} />
         <div className="input-group-append">
-          <span className="input-group-text bg-primary border-primary text-white">
+          <span className="input-group-text bg-light border-light text-black">
             <i className="mdi mdi-calendar-range font-13" />
           </span>
         </div>

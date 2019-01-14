@@ -47,7 +47,7 @@ export default class TransactionStore {
 
   resetFilters() {
     this.filters = {
-      dt_range_type: 'request_dt_range',
+      dt_range_type: 'transfer_dt_range',
       start_date: moment(),
       end_date: moment(),
       service_type: '',

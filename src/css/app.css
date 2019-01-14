@@ -7687,7 +7687,7 @@ body.boxed-layout {
     margin-top: -3px; }
   .nav-user .account-user-name {
     display: block;
-    font-weight: 600; }
+    font-weight: 580; }
 
 .button-menu-mobile {
   border: none;
@@ -7922,7 +7922,9 @@ body.boxed-layout .footer {
 
 .topnav {
   background: -webkit-gradient(linear, left top, left bottom, from(#8f75da), to(#727cf5));
-  background: linear-gradient(to bottom, #8f75da, #727cf5); }
+  background: #727cf5;
+  background: linear-gradient(to bottom, #8f75da, #727cf5); 
+}
   .topnav .topnav-menu {
     margin: 0;
     padding: 0; }

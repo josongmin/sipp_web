@@ -27,7 +27,7 @@ export default class TransactionDetail extends React.Component {
         <div className="modal-body">
           <div className="pl-lg-4">
             <div className="mt-4">
-              <h6 className="font-14">VA NUMBERS(S)</h6>
+              <h6 className="font-14">VA NO</h6>
               <p>{va_numbers.split('\n').map((msg, idx) => msg ? <span style={{ display: 'block' }} key={idx}>{msg}</span> : <br key={idx}/>)}</p>
             </div>
             <div className="mt-4">
@@ -37,7 +37,7 @@ export default class TransactionDetail extends React.Component {
             <div className="mt-4">
               <div className="row">
                 <div className="col-md-4">
-                  <h6 className="font-14">SIPP ORDER NO</h6>
+                  <h6 className="font-14">SIPP NO</h6>
                   <p className="text-sm lh-150">{sipp_order_id}</p>
                 </div>
                 <div className="col-md-4">
@@ -53,15 +53,15 @@ export default class TransactionDetail extends React.Component {
             <div className="mt-4">
               <div className="row">
                 <div className="col-md-4">
-                  <h6 className="font-14">REQUEST DATE/TIME</h6>
+                  <h6 className="font-14">ORDER DATE</h6>
                   <p className="text-sm lh-150">{request_datetime}</p>
                 </div>
                 <div className="col-md-4">
-                  <h6 className="font-14">EXPIRY DATE/TIME</h6>
+                  <h6 className="font-14">EXPIRY DATE</h6>
                   <p className="text-sm lh-150">{expiry_datetime}</p>
                 </div>
                 <div className="col-md-4">
-                  <h6 className="font-14">LAST TRANSFER DATE/TIME</h6>
+                  <h6 className="font-14">PAYMENT DATE</h6>
                   <p className="text-sm lh-150">{last_transfer_datetime}</p>
                 </div>
               </div>
@@ -69,7 +69,7 @@ export default class TransactionDetail extends React.Component {
             <div className="mt-4">
               <div className="row">
                 <div className="col-md-4">
-                  <h6 className="font-14">NAME</h6>
+                  <h6 className="font-14">USE NAME</h6>
                   <p className="text-sm lh-150">{user_name}</p>
                 </div>
                 <div className="col-md-4">
@@ -77,13 +77,13 @@ export default class TransactionDetail extends React.Component {
                   <p className="text-sm lh-150">{receiver_name}</p>
                 </div>
                 <div className="col-md-4">
-                  <h6 className="font-14">PHONE NUMBER</h6>
+                  <h6 className="font-14">PHONE</h6>
                   <p className="text-sm lh-150">{phone}</p>
                 </div>
               </div>
             </div>
           </div>
-          <TransactionDetailTable data={transacions} />
+          <TransactionDetailTable data={transacions}/>
         </div>
       </div>
     )

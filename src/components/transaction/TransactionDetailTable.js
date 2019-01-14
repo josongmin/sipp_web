@@ -10,19 +10,19 @@ export default class TransactionDetailTable extends React.Component {
   render() {
     const { data = [] } = this.props
     return (
-      <div className="dataTables_wrapper dt-bootstrap4 no-footer">
+      <div className="dataTables_wrapper dt-bootstrap4 no-footer" style={{marginTop:20}}>
         <div className="row" style={{ overflowX: 'auto' }}>
           <div className="col-sm-12">
             <table id="basic-datatable" className="table dt-responsive dataTable nowrap" style={{ width: '100%' }}>
               <thead>
               <tr>
                 <th>#</th>
-                <th>trx id</th>
-                <th>상태</th>
-                <th>은행</th>
-                <th>채널</th>
-                <th>금액</th>
-                <th>입금일시</th>
+                <th>Trx ID</th>
+                <th>Status</th>
+                <th>Bank</th>
+                <th>Channel</th>
+                <th>Amount</th>
+                <th>Payment date</th>
               </tr>
               </thead>
               <tbody>

@@ -4,10 +4,11 @@ import BasicLayout from '../components/layouts/BasicLayout'
 import StatsCard from '../components/dashboard/StatsCard'
 import DateRangePicker from '../components/forms/DateRangePicker'
 import maintenanceImg from '../images/maintenance.svg'
+
 @observer
-export default class NoticePage extends React.Component {
+export default class HelpPage extends React.Component {
   render() {
-    return (
+    return ( 
       <BasicLayout {...this.props}>
         <div class="row justify-content-center" style={{marginTop:100}}>
             <div class="col-12">
