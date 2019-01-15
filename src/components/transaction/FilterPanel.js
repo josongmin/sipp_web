@@ -124,7 +124,7 @@ export default class FilterPanel extends React.Component {
                       <Input label={'VA No'} value={filters.va_no} onChange={(value) => setFilters('va_no', value, 'number')} />
                     </div>
                     <div className="col-6">
-                      <Input label={'Trx No'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
+                      <Input label={'Trx ID'} value={filters.service_order_id} onChange={(value) => setFilters('service_order_id', value, 'number')} />
                     </div>
                   </div>
                 </div>

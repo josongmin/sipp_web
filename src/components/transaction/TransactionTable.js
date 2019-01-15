@@ -74,7 +74,7 @@ export default class TransactionTable extends React.Component {
               <thead>
               <tr>
                 <th>#</th>
-                <th>Order No</th>
+                <th>Trx ID</th>
                 <th>Service</th>
                 <th>VA No</th>
                 <th>Amount</th>
