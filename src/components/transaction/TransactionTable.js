@@ -151,7 +151,7 @@ const TR = (props) => {
   }
 
   switch(bank){
-    case 'MANDIRI': bankBadge = 'text-secondary'; break;
+    case 'MANDIRI': bankBadge = 'text-warning'; break;
     case 'BCA': bankBadge = 'text-info'; break;
     case 'BRI': bankBadge = 'text-success'; break;
     case 'BNI': bankBadge = 'text-primary'; break;
