@@ -73,20 +73,20 @@ export default class TransactionTable extends React.Component {
             <table id="basic-datatable" className="table dt-responsive dataTable nowrap " style={{ width: '100%' }}>
               <thead>
               <tr>
-                <th>#</th>
+                {/* <th>#</th> */}
                 <th>Trx ID</th>
                 <th>Service</th>
                 <th>VA No</th>
+                <th>Bank</th>
                 <th>Amount</th>
                 <th>User</th>
                 <th>Receiver</th>
                 <th>Phone</th>
                 {/* <th>Description</th> */}
-                <th>Bank</th>
-                <th>Status</th>
-                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>Order date</th>
-                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>Payment date</th>
                 
+                <th>Status</th>
+                <th className={rqCls} onClick={this.handleClickSort.bind(this, 'request_dt')}>Payment date</th>
+                <th className={tfCls} onClick={this.handleClickSort.bind(this, 'transfer_dt')}>Order date</th>
               </tr>
               </thead>
               <tbody>
@@ -122,51 +122,62 @@ export default class TransactionTable extends React.Component {
 
 const TR = (props) => {
   
-  const { no, service_name, service_order_id, user_name_1, user_name_2, hp, desc, bank, status, va_no, amount, req_dt, trx_dt } = props
+  const { no, service_name, service_order_id, user_name_1, user_name_2, hp, desc, bank, channel, status, va_no, amount, req_dt, trx_dt } = props
   
-  let statusBadge = '', serviceBadge = '';
+  let statusBadge = '', serviceBadge = '', bankBadge = '';
   if(status === 'CANCELLED'){
     statusBadge = 'badge-danger-lighten';
   }
   else if(status === 'PAID'){
     statusBadge = 'badge-info-lighten';
   }
-  else if(status === 'SETTELED'){
+  // else if(status === 'SETTELED'){
+  //   statusBadge = 'badge-primary-lighten';
+  // }
+  else if(status === 'READY'){
     statusBadge = 'badge-primary-lighten';
   }
-  else if(status === 'READY'){
-    statusBadge = 'badge-success-lighten';
-  }
-  else if(status == 'REFUNDED'){
-    statusBadge = 'badge-secondary-lighten';
-  }
+  // else if(status == 'REFUNDED'){
+  //   statusBadge = 'badge-secondary-lighten';
+  // }
   
   
   if(service_name === 'PAY'){
-    serviceBadge = 'text-success';
+    serviceBadge = 'text-info';
   }else if(service_name === 'KREDIT'){
     serviceBadge = 'text-dark';
   }else if(service_name === 'SHOPEE'){
-    serviceBadge = 'text-danger';
+    serviceBadge = 'text-success';
+  }
+
+  switch(bank){
+    case 'MANDIRI': bankBadge = 'text-secondary'; break;
+    case 'BCA': bankBadge = 'text-info'; break;
+    case 'BRI': bankBadge = 'text-success'; break;
+    case 'BNI': bankBadge = 'text-primary'; break;
+    case 'ALL': bankBadge = 'text-danger'; break;
+
   }
 
   return (
     <tr role="row" className="odd">
-      <td>{no}</td>
+      {/* <td>{no}</td> */}
       
-      <td onClick={props.onClick} style={{ cursor: 'pointer', color: '#727cf5' }}><span className="">{service_order_id}</span></td>
+      {/* <td onClick={props.onClick} style={{ cursor: 'pointer', color: '#727cf5' }}><span className="">{service_order_id}</span></td> */}
+      <td  style={{ color: '#727cf5' }}><span className="">{service_order_id === '1' ? 'TEST TRX' : service_order_id}</span></td>
       <td><span className={`badge `+ serviceBadge}>{service_name}</span></td>
-      <td>{va_no}</td>
+      <td><span className="">{va_no}</span></td>
+      <td><span className={`badge ` + bankBadge}>{bank}</span><span className="badge" style={{marginLeft:-4}}>{channel != '-' ? '(' + channel + ')' : ''}</span></td>
+      
       <td>{numberWithCommas(amount)}</td>
       <td>{user_name_1}</td>
       <td>{user_name_2}</td>
       <td>{hp}</td>
       {/* <td>{desc}</td> */}
-      <td><span className="badge">{bank}</span></td>
+      
       <td><span className={`badge ` + statusBadge }>{status}</span></td>
       <td>{trx_dt}</td>
       <td>{req_dt}</td>
-      
     </tr>
   )
 }

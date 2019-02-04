@@ -95,7 +95,7 @@ export default class FilterPanel extends React.Component {
                                 {label: 'All banks', value: ''},
                                 {label: 'BCA', value: 'BCA'},
                                 {label: 'BRI', value: 'BRI'},
-                                {label: 'Mandiri', value: 'MANDIRI'},
+                                {label: 'MANDIRI  ', value: 'MANDIRI'},
                                 {label: 'BNI', value: 'BNI'}
                                 ]}
                               value={filters.bank}
@@ -108,9 +108,9 @@ export default class FilterPanel extends React.Component {
                                 {label: 'All status', value: ''},
                                 {label: 'Ready', value: 'READY'},
                                 {label: 'Paid', value: 'PAID'},
-                                {label: 'Settled', value: 'SETTLED'},
+                                // {label: 'Settled', value: 'SETTLED'},
                                 {label: 'Cancelled', value: 'CANCELLED'},
-                                {label: 'Refunded', value: 'REFUNDED'}
+                                // {label: 'Refunded', value: 'REFUNDED'}
                                 ]}
                               value={filters.status}
                               onChange={(value) => setFilters('status', value)}

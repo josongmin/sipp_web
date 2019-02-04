@@ -27,7 +27,7 @@ export default class TransactionStore {
     this.loading = false
     this.excelLoading = false
     reaction(
-      () => [this.filters.dt_range_type, `${this.filters.start_date.format('YYYYMMDDHHMM')}00-${this.filters.end_date.format('YYYYMMDDHHMM')}00`],
+      () => [this.filters.dt_range_type, `${this.filters.start_date.format('YYYYMMDDHHmm')}00-${this.filters.end_date.format('YYYYMMDDHHmm')}59`],
       ([dt_range_type, range_date]) => {
         if(dt_range_type) {
           this.filters['request_dt_range'] = ''
