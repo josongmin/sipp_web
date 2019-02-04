@@ -2,7 +2,7 @@ import axios from "axios"
 import qs from "qs"
 import { stores } from '../stores'
 
-export const URL = "http://localhost:10008/v1/admin"
+export const URL = "http://124.158.132.30:10008/v1/admin"
 export const LINK_URL = "http://124.158.132.30"
 
 // export const URL = "http://localhost:2112";
